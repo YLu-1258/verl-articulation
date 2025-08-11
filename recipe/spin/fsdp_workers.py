@@ -26,16 +26,16 @@ from codetiming import Timer
 from omegaconf import OmegaConf, open_dict
 from torch.distributed.device_mesh import init_device_mesh
 
-import verl.utils.torch_functional as verl_F
-from verl import DataProto
-from verl.single_controller.base import Worker
-from verl.single_controller.base.decorator import Dispatch, make_nd_compute_dataproto_dispatch_fn, register
-from verl.utils import hf_tokenizer
-from verl.utils.checkpoint.fsdp_checkpoint_manager import FSDPCheckpointManager
-from verl.utils.device import get_device_id, get_device_name, get_nccl_backend, get_torch_device
-from verl.utils.flops_counter import FlopsCounter
-from verl.utils.fs import copy_to_local
-from verl.utils.fsdp_utils import (
+import verl_articulation.utils.torch_functional as verl_F
+from verl_articulation import DataProto
+from verl_articulation.single_controller.base import Worker
+from verl_articulation.single_controller.base.decorator import Dispatch, make_nd_compute_dataproto_dispatch_fn, register
+from verl_articulation.utils import hf_tokenizer
+from verl_articulation.utils.checkpoint.fsdp_checkpoint_manager import FSDPCheckpointManager
+from verl_articulation.utils.device import get_device_id, get_device_name, get_nccl_backend, get_torch_device
+from verl_articulation.utils.flops_counter import FlopsCounter
+from verl_articulation.utils.fs import copy_to_local
+from verl_articulation.utils.fsdp_utils import (
     get_fsdp_wrap_policy,
     get_init_weight_context_manager,
     init_fn,
@@ -44,11 +44,11 @@ from verl.utils.fsdp_utils import (
     offload_fsdp_model_to_cpu,
     offload_fsdp_optimizer,
 )
-from verl.utils.import_utils import import_external_libs
-from verl.utils.model import compute_position_id_with_mask
-from verl.utils.profiler import log_gpu_memory_usage
-from verl.workers.fsdp_workers import ActorRolloutRefWorker
-from verl.workers.sharding_manager.fsdp_ulysses import FSDPUlyssesShardingManager
+from verl_articulation.utils.import_utils import import_external_libs
+from verl_articulation.utils.model import compute_position_id_with_mask
+from verl_articulation.utils.profiler import log_gpu_memory_usage
+from verl_articulation.workers.fsdp_workers import ActorRolloutRefWorker
+from verl_articulation.workers.sharding_manager.fsdp_ulysses import FSDPUlyssesShardingManager
 
 logger = logging.getLogger(__file__)
 logger.setLevel(os.getenv("VERL_PPO_LOGGING_LEVEL", "WARN"))
@@ -373,7 +373,7 @@ class RewardModelWorker(Worker):
             )
 
             if config.model.get("use_remove_padding", False) or self.ulysses_sequence_parallel_size > 1:
-                from verl.models.transformers.monkey_patch import apply_monkey_patch
+                from verl_articulation.models.transformers.monkey_patch import apply_monkey_patch
 
                 apply_monkey_patch(model=reward_module, ulysses_sp_size=self.ulysses_sequence_parallel_size)
 
@@ -408,7 +408,7 @@ class RewardModelWorker(Worker):
     def _forward_micro_batch(self, micro_batch):
         from flash_attn.bert_padding import index_first_axis, pad_input, rearrange, unpad_input
 
-        from verl.utils.ulysses import gather_outputs_and_unpad, ulysses_pad_and_slice_inputs
+        from verl_articulation.utils.ulysses import gather_outputs_and_unpad, ulysses_pad_and_slice_inputs
 
         with torch.no_grad(), torch.autocast(device_type=get_device_name(), dtype=torch.bfloat16):
             input_ids = micro_batch["input_ids"]
@@ -544,7 +544,7 @@ class RewardModelWorker(Worker):
     def compute_rm_score(self, data: DataProto):
         import itertools
 
-        from verl.utils.seqlen_balancing import get_reverse_idx, rearrange_micro_batches
+        from verl_articulation.utils.seqlen_balancing import get_reverse_idx, rearrange_micro_batches
 
         # Support all hardwares
         data = data.to(get_device_id())

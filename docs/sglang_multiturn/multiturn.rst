@@ -20,7 +20,7 @@ These configuration activates the sglang engine for multi-turn interaction durin
 Custom Tool Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-For custom environment interaction tools, you can implement your own tools based on ``verl.tools.base_tool.BaseTool``. Then, specify your tool configurations in a YAML file:
+For custom environment interaction tools, you can implement your own tools based on ``verl_articulation.tools.base_tool.BaseTool``. Then, specify your tool configurations in a YAML file:
 
 .. code-block:: yaml
 
@@ -65,7 +65,7 @@ Image and video should be processed before returning. For example, if you are us
 
     async def create(self, ...) -> tuple[str, ToolResponse]:
         ...
-        from verl.utils.dataset.vision_utils import process_image, process_video
+        from verl_articulation.utils.dataset.vision_utils import process_image, process_video
 
         img1 = process_image(img1)
         video1 = process_video(video1)
@@ -76,7 +76,7 @@ Image and video should be processed before returning. For example, if you are us
 
     async def execute(self, ...) -> Tuple[str | Dict[str, Any], float, dict]:
         ...
-        from verl.utils.dataset.vision_utils import process_image, process_video
+        from verl_articulation.utils.dataset.vision_utils import process_image, process_video
 
         img1 = process_image(img1)
         video1 = process_video(video1)

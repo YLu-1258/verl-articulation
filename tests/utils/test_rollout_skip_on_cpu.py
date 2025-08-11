@@ -19,7 +19,7 @@ from unittest.mock import MagicMock
 import pytest
 import torch
 
-from verl.utils.rollout_skip import DataProto, RolloutSkip
+from verl_articulation.utils.rollout_skip import DataProto, RolloutSkip
 
 len_prompt = 50
 len_response = 100

@@ -19,7 +19,7 @@ Furthermore, you can learn the development plan and roadmap via [RFC](https://gi
 
 ## Developing
 
-- **Python-only**: install verl via `pip install -e .[test,vllm]` or `pip install -e .[test,sglang]` and iterate quickly. For full dependency setup, check out the verl [installation doc](https://verl.readthedocs.io/en/latest/start/install.html).
+- **Python-only**: install verl via `pip install -e .[test,vllm]` or `pip install -e .[test,sglang]` and iterate quickly. For full dependency setup, check out the verl [installation doc](https://verl_articulation.readthedocs.io/en/latest/start/install.html).
 
 ## Code Linting and Formatting
 
@@ -85,5 +85,5 @@ See the [LICENSE](https://github.com/volcengine/verl/blob/main/LICENSE) file for
 
 ## Thank You
 
-We appreciate your contributions to verl. Your efforts help make the project stronger and more user-friendly. Happy coding!
+We appreciate your contributions to verl_articulation. Your efforts help make the project stronger and more user-friendly. Happy coding!
 

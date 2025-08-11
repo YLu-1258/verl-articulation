@@ -7,7 +7,7 @@ python scripts/converter_hf_to_mcore.py --hf_model_path $HF_MODEL_PATH --output_
 
 export CUDA_DEVICE_MAX_CONNECTIONS=1 # For megatron communication/computation overlapping
 
-python3 -m verl.trainer.main_ppo --config-path=config \
+python3 -m verl_articulation.trainer.main_ppo --config-path=config \
     --config-name='ppo_megatron_trainer.yaml'\
     algorithm.adv_estimator=grpo \
     data.train_files=$HOME/data/gsm8k/train.parquet \

@@ -16,7 +16,7 @@
 Reward function
 """
 
-from verl.utils.reward_score import math
+from verl_articulation.utils.reward_score import math
 
 
 def char_count_reward_function(data_source, solution_str, ground_truth, extra_info=None):

@@ -18,7 +18,7 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
-from verl.utils.rollout_trace import RolloutTraceConfig, rollout_trace_attr, rollout_trace_op
+from verl_articulation.utils.rollout_trace import RolloutTraceConfig, rollout_trace_attr, rollout_trace_op
 
 
 @pytest.fixture(autouse=True)

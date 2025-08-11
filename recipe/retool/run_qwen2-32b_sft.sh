@@ -20,7 +20,7 @@ torchrun --nnodes=$nnodes \
      --master-addr=$master_addr \
      --master-port=$master_port \
      --node-rank=$node_rank \
-     -m verl.trainer.fsdp_sft_trainer \
+     -m verl_articulation.trainer.fsdp_sft_trainer \
     data.train_files=$TRAIN_DATA \
     data.val_files=$EVAL_DATA \
     data.max_length=16384 \

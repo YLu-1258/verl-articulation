@@ -29,12 +29,12 @@ import torch
 from torch.utils.data import Dataset, Sampler
 from tqdm import tqdm
 
-from verl import DataProto
-from verl.single_controller.ray import RayWorkerGroup
-from verl.trainer.ppo import core_algos
-from verl.trainer.ppo.core_algos import agg_loss
-from verl.trainer.ppo.metric_utils import reduce_metrics
-from verl.trainer.ppo.ray_trainer import (
+from verl_articulation import DataProto
+from verl_articulation.single_controller.ray import RayWorkerGroup
+from verl_articulation.trainer.ppo import core_algos
+from verl_articulation.trainer.ppo.core_algos import agg_loss
+from verl_articulation.trainer.ppo.metric_utils import reduce_metrics
+from verl_articulation.trainer.ppo.ray_trainer import (
     AdvantageEstimator,
     RayPPOTrainer,
     ResourcePoolManager,
@@ -43,9 +43,9 @@ from verl.trainer.ppo.ray_trainer import (
     apply_kl_penalty,
     compute_response_mask,
 )
-from verl.trainer.ppo.reward import compute_reward, compute_reward_async
-from verl.utils.profiler.performance import simple_timer
-from verl.utils.tracking import ValidationGenerationsLogger
+from verl_articulation.trainer.ppo.reward import compute_reward, compute_reward_async
+from verl_articulation.utils.profiler.performance import simple_timer
+from verl_articulation.utils.tracking import ValidationGenerationsLogger
 
 
 def softmean(x: torch.Tensor, beta: float, dim: int = -1, keepdim: bool = False) -> torch.Tensor:
@@ -136,7 +136,7 @@ class RaySPPOTrainer(RayPPOTrainer):
         """
         from omegaconf import OmegaConf
 
-        from verl.utils.tracking import Tracking
+        from verl_articulation.utils.tracking import Tracking
 
         logger = Tracking(
             project_name=self.config.trainer.project_name,

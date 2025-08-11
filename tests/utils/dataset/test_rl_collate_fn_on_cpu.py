@@ -15,7 +15,7 @@ import torch
 
 
 def test_rl_collate_fn():
-    from verl.utils.dataset.rl_dataset import collate_fn
+    from verl_articulation.utils.dataset.rl_dataset import collate_fn
 
     max_prompt_length = 5
 

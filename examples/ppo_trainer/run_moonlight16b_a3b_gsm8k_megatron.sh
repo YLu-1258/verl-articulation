@@ -42,7 +42,7 @@ ETP=1
 VLLM_TP=4
 
 # RAY_ADDRESS='auto' ray job submit --working-dir . -- 
-python3 -m verl.trainer.main_ppo --config-path=./config --config-name='ppo_megatron_trainer'\
+python3 -m verl_articulation.trainer.main_ppo --config-path=./config --config-name='ppo_megatron_trainer'\
     algorithm.adv_estimator=gae \
     data.train_files="$train_files" \
     data.val_files="$test_files" \

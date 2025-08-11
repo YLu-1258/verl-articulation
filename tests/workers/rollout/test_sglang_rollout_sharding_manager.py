@@ -16,7 +16,7 @@
 import pytest
 import torch
 
-from verl.workers.rollout.sglang_rollout.utils import get_named_tensor_buckets
+from verl_articulation.workers.rollout.sglang_rollout.utils import get_named_tensor_buckets
 
 _TENSOR_1MB = torch.zeros(512, 512)
 _BYTES_1MB = 1 << 20

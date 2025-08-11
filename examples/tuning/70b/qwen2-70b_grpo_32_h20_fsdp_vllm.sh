@@ -4,7 +4,7 @@ gsm8k_train_path=$HOME/data/rlhf/gsm8k/train.parquet
 gsm8k_val_path=$HOME/data/rlhf/math/test.parquet
 model_path=Qwen/Qwen2-72B-Instruct
 
-python3 -m verl.trainer.main_ppo \
+python3 -m verl_articulation.trainer.main_ppo \
     algorithm.adv_estimator=grpo \
     data.train_files=$data_path \
     data.val_files=$gsm8k_val_path \

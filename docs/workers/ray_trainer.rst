@@ -117,7 +117,7 @@ To extend to other RLHF algorithms, such as DPO, GRPO, please refer to
        The driver process only need to call the compute functions of the worker group through RPC to construct the PPO dataflow.
        The light-weight advantage computation is done on the driver process.
        """
-       from verl.utils.tracking import Tracking
+       from verl_articulation.utils.tracking import Tracking
        from omegaconf import OmegaConf
 
        logger = Tracking(project_name=self.config.trainer.project_name,
@@ -219,6 +219,8 @@ To extend to other RLHF algorithms, such as DPO, GRPO, please refer to
                metrics.update(data_metrics)
 
                # TODO: make a canonical logger that supports various backend
+               print("LOGGER IS:", logger)
+               print("LOGGER TYPE:", type(logger))
                logger.log(data=metrics, step=global_steps)
 
                if self.config.trainer.save_freq > 0 and (global_steps + 1) % self.config.trainer.save_freq == 0:

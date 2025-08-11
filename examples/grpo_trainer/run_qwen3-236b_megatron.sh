@@ -59,7 +59,7 @@ train_tp=4
 train_ep=4
 train_pp=8
 
-python3 -m verl.trainer.main_ppo \
+python3 -m verl_articulation.trainer.main_ppo \
     --config-path=config \
     --config-name='ppo_megatron_trainer.yaml' \
     data.train_files="${TRAIN_FILE}" \

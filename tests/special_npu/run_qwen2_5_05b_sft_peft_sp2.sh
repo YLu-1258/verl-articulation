@@ -3,7 +3,7 @@ set -x
 mkdir -p ./save_ckpts
 
 torchrun --standalone --nnodes=1 --nproc_per_node=8 \
-     -m verl.trainer.fsdp_sft_trainer \
+     -m verl_articulation.trainer.fsdp_sft_trainer \
     data.train_files=$HOME/data/gsm8k/train.parquet \
     data.val_files=$HOME/data/gsm8k/test.parquet \
     data.prompt_key=extra_info \

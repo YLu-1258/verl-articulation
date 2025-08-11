@@ -1,7 +1,7 @@
 set -x
 ENGINE=${1:-vllm}
 
-python3 -m verl.trainer.main_ppo \
+python3 -m verl_articulation.trainer.main_ppo \
     algorithm.adv_estimator=grpo \
     data.train_files=$HOME/data/geo3k/train.parquet \
     data.val_files=$HOME/data/geo3k/test.parquet \

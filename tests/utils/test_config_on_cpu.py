@@ -17,7 +17,7 @@ from dataclasses import dataclass, field
 
 from omegaconf import OmegaConf
 
-from verl.utils import omega_conf_to_dataclass
+from verl_articulation.utils import omega_conf_to_dataclass
 
 
 @dataclass

@@ -11,7 +11,7 @@ TRAIN_BATCH_SIZE=${TRAIN_BATCH_SIZE:-512}
 MICRO_BATCH_SIZE=${MICRO_BATCH_SIZE:-8}
 OFFLOAD=${OFFLOAD:-False}
 
-python3 -m verl.trainer.main_ppo \
+python3 -m verl_articulation.trainer.main_ppo \
     --config-path="$CONFIG_PATH" \
     --config-name='gsm8k_multiturn_grpo_w_interaction' \
     algorithm.adv_estimator=grpo \

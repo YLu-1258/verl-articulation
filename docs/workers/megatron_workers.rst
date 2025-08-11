@@ -26,7 +26,7 @@ Development Progress
 
 
 Note that [Deprecated] means that the feature is not supported in the latest
-version of verl.
+version of verl_articulation.
 [To-Optimize] means that the feature is implemented but not optimized yet.
 [WIP] means that the feature is working in progress.
 [In-Release] means that the feature is ready and in review process,
@@ -249,7 +249,7 @@ Utils of Train Optimization
 Offload
 ^^^^^^^
 When resources are tight, the offload method can lower GPU memory 
-usage, helping training and inference frameworks work well under verl. 
+usage, helping training and inference frameworks work well under verl_articulation. 
 It moves parameters, gradients, and optimizers to CPU memory and only 
 loads them back to the GPU when needed.
 

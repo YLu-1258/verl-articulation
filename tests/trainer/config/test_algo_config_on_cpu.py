@@ -18,13 +18,13 @@ import numpy as np
 import torch
 from omegaconf import OmegaConf
 
-from verl.trainer.config import AlgoConfig, KLControlConfig
-from verl.trainer.ppo.core_algos import (
+from verl_articulation.trainer.config import AlgoConfig, KLControlConfig
+from verl_articulation.trainer.ppo.core_algos import (
     compute_gae_advantage_return,
     compute_grpo_outcome_advantage,
     get_adv_estimator_fn,
 )
-from verl.utils.config import omega_conf_to_dataclass
+from verl_articulation.utils.config import omega_conf_to_dataclass
 
 
 class TestAlgoConfig(unittest.TestCase):
@@ -34,7 +34,7 @@ class TestAlgoConfig(unittest.TestCase):
         """Set up test fixtures."""
         # Create a sample algorithm config as DictConfig (similar to what comes from YAML)
         self.config_dict = {
-            "_target_": "verl.trainer.config.AlgoConfig",
+            "_target_": "verl_articulation.trainer.config.AlgoConfig",
             "gamma": 0.99,
             "lam": 0.95,
             "adv_estimator": "gae",
@@ -42,7 +42,7 @@ class TestAlgoConfig(unittest.TestCase):
             "use_kl_in_reward": True,
             "kl_penalty": "kl",
             "kl_ctrl": {
-                "_target_": "verl.trainer.config.KLControlConfig",
+                "_target_": "verl_articulation.trainer.config.KLControlConfig",
                 "type": "adaptive",
                 "kl_coef": 0.002,
                 "horizon": 5000,
@@ -132,7 +132,7 @@ class TestAlgoConfig(unittest.TestCase):
         with initialize_config_dir(config_dir=os.path.abspath("verl/trainer/config")):
             cfg = compose(config_name="ppo_trainer")
         algo_config = omega_conf_to_dataclass(cfg.algorithm)
-        from verl.trainer.config import AlgoConfig
+        from verl_articulation.trainer.config import AlgoConfig
 
         assert isinstance(algo_config, AlgoConfig)
 

@@ -20,14 +20,14 @@ import torch
 import torch.distributed
 from omegaconf import DictConfig, OmegaConf
 
-from verl.single_controller.base.decorator import Dispatch, register
-from verl.utils.debug import (
+from verl_articulation.single_controller.base.decorator import Dispatch, register
+from verl_articulation.utils.debug import (
     log_gpu_memory_usage,
 )
-from verl.utils.device import get_device_name, get_torch_device
-from verl.utils.fs import copy_to_local
-from verl.workers.megatron_workers import ActorRolloutRefWorker as ARRWorker
-from verl.workers.megatron_workers import CriticWorker, RewardModelWorker
+from verl_articulation.utils.device import get_device_name, get_torch_device
+from verl_articulation.utils.fs import copy_to_local
+from verl_articulation.workers.megatron_workers import ActorRolloutRefWorker as ARRWorker
+from verl_articulation.workers.megatron_workers import CriticWorker, RewardModelWorker
 
 logger = logging.getLogger(__file__)
 logger.setLevel(os.getenv("VERL_LOGGING_LEVEL", "WARN"))
@@ -46,8 +46,8 @@ class ActorRolloutRefWorker(ARRWorker):
 
     def _get_actor_params_generator(self):
         assert self._is_actor
-        from verl.models.mcore import get_mcore_weight_converter
-        from verl.utils.megatron_utils import per_tensor_generator
+        from verl_articulation.models.mcore import get_mcore_weight_converter
+        from verl_articulation.utils.megatron_utils import per_tensor_generator
 
         layer_name_mapping = {
             "qkv_layer_name": "self_attention.linear_qkv.",
@@ -73,7 +73,7 @@ class ActorRolloutRefWorker(ARRWorker):
             inference_model = (
                 self.rollout.inference_engine.llm_engine.model_executor.driver_worker.worker.model_runner.model
             )
-            from verl.utils.vllm.patch import patch_vllm_moe_model_weight_loader
+            from verl_articulation.utils.vllm.patch import patch_vllm_moe_model_weight_loader
 
             patch_vllm_moe_model_weight_loader(inference_model)
         for key, shape, dtype in self._weights_info:
@@ -120,7 +120,7 @@ class RolloutWorker(ActorRolloutRefWorker):
 
             importlib.import_module(self.config.model.external_lib)
 
-        from verl.utils.torch_dtypes import PrecisionType
+        from verl_articulation.utils.torch_dtypes import PrecisionType
 
         override_model_config = OmegaConf.to_container(OmegaConf.create(self.config.model.get("override_config", {})))
         override_transformer_config = {}
@@ -128,7 +128,7 @@ class RolloutWorker(ActorRolloutRefWorker):
         self.dtype = PrecisionType.to_dtype(self.param_dtype)
         trust_remote_code = self.config.model.get("trust_remote_code", False)
 
-        from verl.utils.model import get_generation_config
+        from verl_articulation.utils.model import get_generation_config
 
         self._init_hf_config_and_tf_config(
             self.config.model.path,
@@ -145,7 +145,7 @@ class RolloutWorker(ActorRolloutRefWorker):
         assert self.config.rollout.name == "vllm"
         assert self.config.rollout.mode == "sync"
 
-        from verl.workers.rollout.vllm_rollout import vLLMRollout
+        from verl_articulation.workers.rollout.vllm_rollout import vLLMRollout
 
         from .vllm_sharding_manager import VLLMShardingManager
 
@@ -163,7 +163,7 @@ class RolloutWorker(ActorRolloutRefWorker):
         log_gpu_memory_usage("Before building vllm rollout", logger=None)
 
         local_path = copy_to_local(self.config.model.path, use_shm=self.config.model.get("use_shm", False))
-        from verl.workers.rollout.vllm_rollout import vLLMAsyncRollout
+        from verl_articulation.workers.rollout.vllm_rollout import vLLMAsyncRollout
 
         vllm_rollout_cls = vLLMRollout if self.config.rollout.mode == "sync" else vLLMAsyncRollout
         rollout = vllm_rollout_cls(

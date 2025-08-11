@@ -19,9 +19,9 @@ import tempfile
 import pytest
 from omegaconf import OmegaConf
 
-from verl.interactions.base import BaseInteraction
-from verl.interactions.gsm8k_interaction import Gsm8kInteraction
-from verl.interactions.utils.interaction_registry import (
+from verl_articulation.interactions.base import BaseInteraction
+from verl_articulation.interactions.gsm8k_interaction import Gsm8kInteraction
+from verl_articulation.interactions.utils.interaction_registry import (
     get_interaction_class,
     initialize_interactions_from_config,
 )
@@ -31,11 +31,11 @@ class TestInteractionRegistry:
     def test_get_interaction_class(self):
         """Test getting interaction class by name."""
         # Test getting base interaction class
-        base_cls = get_interaction_class("verl.interactions.base.BaseInteraction")
+        base_cls = get_interaction_class("verl_articulation.interactions.base.BaseInteraction")
         assert base_cls == BaseInteraction
 
         # Test getting gsm8k interaction class
-        gsm8k_cls = get_interaction_class("verl.interactions.gsm8k_interaction.Gsm8kInteraction")
+        gsm8k_cls = get_interaction_class("verl_articulation.interactions.gsm8k_interaction.Gsm8kInteraction")
         assert gsm8k_cls == Gsm8kInteraction
 
     def test_initialize_single_interaction_from_config(self):
@@ -45,7 +45,7 @@ class TestInteractionRegistry:
             "interaction": [
                 {
                     "name": "test_gsm8k",
-                    "class_name": "verl.interactions.gsm8k_interaction.Gsm8kInteraction",
+                    "class_name": "verl_articulation.interactions.gsm8k_interaction.Gsm8kInteraction",
                     "config": {},
                 }
             ]
@@ -72,12 +72,12 @@ class TestInteractionRegistry:
             "interaction": [
                 {
                     "name": "gsm8k_solver",
-                    "class_name": "verl.interactions.gsm8k_interaction.Gsm8kInteraction",
+                    "class_name": "verl_articulation.interactions.gsm8k_interaction.Gsm8kInteraction",
                     "config": {},
                 },
                 {
                     "name": "base_agent",
-                    "class_name": "verl.interactions.base.BaseInteraction",
+                    "class_name": "verl_articulation.interactions.base.BaseInteraction",
                     "config": {"custom_param": "test_value"},
                 },
             ]
@@ -111,7 +111,7 @@ class TestInteractionRegistry:
     def test_initialize_interaction_without_explicit_name(self):
         """Test that interaction name is derived from class name when not specified."""
         config_content = {
-            "interaction": [{"class_name": "verl.interactions.gsm8k_interaction.Gsm8kInteraction", "config": {}}]
+            "interaction": [{"class_name": "verl_articulation.interactions.gsm8k_interaction.Gsm8kInteraction", "config": {}}]
         }
 
         with tempfile.NamedTemporaryFile(mode="w", suffix=".yaml", delete=False) as f:
@@ -163,10 +163,10 @@ class TestInteractionRegistry:
         """Test handling of duplicate interaction names."""
         config_content = {
             "interaction": [
-                {"name": "duplicate", "class_name": "verl.interactions.base.BaseInteraction", "config": {}},
+                {"name": "duplicate", "class_name": "verl_articulation.interactions.base.BaseInteraction", "config": {}},
                 {
                     "name": "duplicate",
-                    "class_name": "verl.interactions.gsm8k_interaction.Gsm8kInteraction",
+                    "class_name": "verl_articulation.interactions.gsm8k_interaction.Gsm8kInteraction",
                     "config": {},
                 },
             ]
@@ -186,8 +186,8 @@ class TestInteractionRegistry:
         """Test automatic name generation for various class name patterns."""
         config_content = {
             "interaction": [
-                {"class_name": "verl.interactions.base.BaseInteraction", "config": {}},
-                {"class_name": "verl.interactions.gsm8k_interaction.Gsm8kInteraction", "config": {}},
+                {"class_name": "verl_articulation.interactions.base.BaseInteraction", "config": {}},
+                {"class_name": "verl_articulation.interactions.gsm8k_interaction.Gsm8kInteraction", "config": {}},
             ]
         }
 

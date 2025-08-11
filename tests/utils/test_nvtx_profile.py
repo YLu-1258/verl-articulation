@@ -16,9 +16,9 @@
 import unittest
 from unittest.mock import MagicMock, patch
 
-from verl.utils import omega_conf_to_dataclass
-from verl.utils.profiler import ProfilerConfig
-from verl.utils.profiler.nvtx_profile import NsightSystemsProfiler
+from verl_articulation.utils import omega_conf_to_dataclass
+from verl_articulation.utils.profiler import ProfilerConfig
+from verl_articulation.utils.profiler.nvtx_profile import NsightSystemsProfiler
 
 
 class TestProfilerConfig(unittest.TestCase):
@@ -54,7 +54,7 @@ class TestProfilerConfig(unittest.TestCase):
         """Test that modifying frozen keys in ProfilerConfig raises exceptions."""
         from dataclasses import FrozenInstanceError
 
-        from verl.utils.profiler.config import ProfilerConfig
+        from verl_articulation.utils.profiler.config import ProfilerConfig
 
         # Create a new ProfilerConfig instance
         config = ProfilerConfig(discrete=True, all_ranks=False, ranks=[0], extra={"key": "value"})
@@ -142,8 +142,8 @@ class TestNsightSystemsProfiler(unittest.TestCase):
         with (
             patch("torch.cuda.profiler.start") as mock_start,
             patch("torch.cuda.profiler.stop") as mock_stop,
-            patch("verl.utils.profiler.nvtx_profile.mark_start_range") as mock_start_range,
-            patch("verl.utils.profiler.nvtx_profile.mark_end_range") as mock_end_range,
+            patch("verl_articulation.utils.profiler.nvtx_profile.mark_start_range") as mock_start_range,
+            patch("verl_articulation.utils.profiler.nvtx_profile.mark_end_range") as mock_end_range,
         ):
             result = test_func(mock_self)
             self.assertEqual(result, "result")
@@ -166,8 +166,8 @@ class TestNsightSystemsProfiler(unittest.TestCase):
         with (
             patch("torch.cuda.profiler.start") as mock_start,
             patch("torch.cuda.profiler.stop") as mock_stop,
-            patch("verl.utils.profiler.nvtx_profile.mark_start_range") as mock_start_range,
-            patch("verl.utils.profiler.nvtx_profile.mark_end_range") as mock_end_range,
+            patch("verl_articulation.utils.profiler.nvtx_profile.mark_start_range") as mock_start_range,
+            patch("verl_articulation.utils.profiler.nvtx_profile.mark_end_range") as mock_end_range,
         ):
             result = test_func(mock_self)
             self.assertEqual(result, "result")

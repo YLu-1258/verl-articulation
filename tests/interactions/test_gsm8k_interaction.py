@@ -18,7 +18,7 @@ from unittest.mock import patch
 
 import pytest
 
-from verl.interactions.gsm8k_interaction import Gsm8kInteraction
+from verl_articulation.interactions.gsm8k_interaction import Gsm8kInteraction
 
 
 class TestGsm8kInteraction:
@@ -82,7 +82,7 @@ class TestGsm8kInteraction:
 
         messages = [{"role": "assistant", "content": "#### 42"}]
 
-        with patch("verl.utils.reward_score.gsm8k.compute_score", return_value=1.0):
+        with patch("verl_articulation.utils.reward_score.gsm8k.compute_score", return_value=1.0):
             should_terminate, response, reward, metadata = await self.interaction.generate_response(
                 instance_id, messages
             )
@@ -104,7 +104,7 @@ class TestGsm8kInteraction:
 
         messages = [{"role": "assistant", "content": "42"}]
 
-        with patch("verl.utils.reward_score.gsm8k.compute_score", return_value=1.0):
+        with patch("verl_articulation.utils.reward_score.gsm8k.compute_score", return_value=1.0):
             should_terminate, response, reward, metadata = await self.interaction.generate_response(
                 instance_id, messages
             )
@@ -125,7 +125,7 @@ class TestGsm8kInteraction:
 
         messages = [{"role": "assistant", "content": "24"}]
 
-        with patch("verl.utils.reward_score.gsm8k.compute_score", return_value=0.0):
+        with patch("verl_articulation.utils.reward_score.gsm8k.compute_score", return_value=0.0):
             should_terminate, response, reward, metadata = await self.interaction.generate_response(
                 instance_id, messages
             )
@@ -151,7 +151,7 @@ class TestGsm8kInteraction:
             {"role": "assistant", "content": "#### 42"},
         ]
 
-        with patch("verl.utils.reward_score.gsm8k.compute_score", return_value=1.0):
+        with patch("verl_articulation.utils.reward_score.gsm8k.compute_score", return_value=1.0):
             should_terminate, response, reward, metadata = await self.interaction.generate_response(
                 instance_id, messages
             )
@@ -171,7 +171,7 @@ class TestGsm8kInteraction:
 
         messages = [{"role": "user", "content": "Hello!"}]
 
-        with patch("verl.utils.reward_score.gsm8k.compute_score", return_value=0.0):
+        with patch("verl_articulation.utils.reward_score.gsm8k.compute_score", return_value=0.0):
             should_terminate, response, reward, metadata = await self.interaction.generate_response(
                 instance_id, messages
             )
@@ -191,7 +191,7 @@ class TestGsm8kInteraction:
         # Set a response
         self.interaction._instance_dict[instance_id]["response"] = "#### 42"
 
-        with patch("verl.utils.reward_score.gsm8k.compute_score", return_value=1.0) as mock_compute:
+        with patch("verl_articulation.utils.reward_score.gsm8k.compute_score", return_value=1.0) as mock_compute:
             score = await self.interaction.calculate_score(instance_id)
 
             assert score == 1.0
@@ -209,7 +209,7 @@ class TestGsm8kInteraction:
         # Set a response
         self.interaction._instance_dict[instance_id]["response"] = "#### 24"
 
-        with patch("verl.utils.reward_score.gsm8k.compute_score", return_value=0.0) as mock_compute:
+        with patch("verl_articulation.utils.reward_score.gsm8k.compute_score", return_value=0.0) as mock_compute:
             score = await self.interaction.calculate_score(instance_id, extra_param="test")
 
             assert score == 0.0
@@ -265,7 +265,7 @@ class TestGsm8kInteraction:
         # Generate response with correct answer
         messages = [{"role": "assistant", "content": "42"}]
 
-        with patch("verl.utils.reward_score.gsm8k.compute_score", return_value=1.0):
+        with patch("verl_articulation.utils.reward_score.gsm8k.compute_score", return_value=1.0):
             should_terminate, response, reward, metadata = await self.interaction.generate_response(
                 instance_id, messages
             )
@@ -288,7 +288,7 @@ class TestGsm8kInteraction:
         # Generate response with incorrect answer
         messages = [{"role": "assistant", "content": "24"}]
 
-        with patch("verl.utils.reward_score.gsm8k.compute_score", return_value=0.0):
+        with patch("verl_articulation.utils.reward_score.gsm8k.compute_score", return_value=0.0):
             should_terminate, response, reward, metadata = await self.interaction.generate_response(
                 instance_id, messages
             )
@@ -300,7 +300,7 @@ class TestGsm8kInteraction:
         messages.append({"role": "user", "content": response})
         messages.append({"role": "assistant", "content": "42"})
 
-        with patch("verl.utils.reward_score.gsm8k.compute_score", return_value=1.0):
+        with patch("verl_articulation.utils.reward_score.gsm8k.compute_score", return_value=1.0):
             should_terminate, response, reward, metadata = await self.interaction.generate_response(
                 instance_id, messages
             )
@@ -330,7 +330,7 @@ class TestGsm8kInteraction:
         messages_1 = [{"role": "assistant", "content": "42"}]
         messages_2 = [{"role": "assistant", "content": "24"}]
 
-        with patch("verl.utils.reward_score.gsm8k.compute_score", side_effect=[1.0, 1.0]):
+        with patch("verl_articulation.utils.reward_score.gsm8k.compute_score", side_effect=[1.0, 1.0]):
             should_terminate_1, _, reward_1, _ = await self.interaction.generate_response(instance_id_1, messages_1)
             should_terminate_2, _, reward_2, _ = await self.interaction.generate_response(instance_id_2, messages_2)
 
@@ -356,7 +356,7 @@ class TestGsm8kInteraction:
 
         messages = []
 
-        with patch("verl.utils.reward_score.gsm8k.compute_score", return_value=0.0):
+        with patch("verl_articulation.utils.reward_score.gsm8k.compute_score", return_value=0.0):
             should_terminate, response, reward, metadata = await self.interaction.generate_response(
                 instance_id, messages
             )
@@ -378,7 +378,7 @@ class TestGsm8kInteraction:
             {"role": "assistant"}  # Missing content field
         ]
 
-        with patch("verl.utils.reward_score.gsm8k.compute_score", return_value=0.0):
+        with patch("verl_articulation.utils.reward_score.gsm8k.compute_score", return_value=0.0):
             should_terminate, response, reward, metadata = await self.interaction.generate_response(
                 instance_id, messages
             )
@@ -389,7 +389,7 @@ class TestGsm8kInteraction:
 
     def test_inheritance_from_base_interaction(self):
         """Test that Gsm8kInteraction properly inherits from BaseInteraction."""
-        from verl.interactions.base import BaseInteraction
+        from verl_articulation.interactions.base import BaseInteraction
 
         assert isinstance(self.interaction, BaseInteraction)
 

@@ -63,7 +63,7 @@ vllm & vllm-ascend
 
 .. code-block:: bash
 
-    git clone https://github.com/volcengine/verl.git
+    git clone https://github.com/volcengine/verl_articulation.git
     cd verl
     pip install -r requirements-npu.txt
     pip install -e .
@@ -112,7 +112,7 @@ vllm & vllm-ascend
 
     export VLLM_ATTENTION_BACKEND=XFORMERS
 
-    python3 -m verl.trainer.main_ppo \
+    python3 -m verl_articulation.trainer.main_ppo \
         algorithm.adv_estimator=grpo \
         data.train_files=$HOME/data/gsm8k/train.parquet \
         data.val_files=$HOME/data/gsm8k/test.parquet \
@@ -161,7 +161,7 @@ MindSpeed 训练后端
 
 3. MindSpeed 自定义入参可通过 ``override_transformer_config`` 参数传入，例如对 actor 模型开启 FA 特性可使用 ``+actor_rollout_ref.actor.megatron.override_transformer_config.use_flash_attn=True``。
 
-4. 更多特性信息可参考 `MindSpeed Verl 文档 <https://gitee.com/ascend/MindSpeed/blob/master/docs/user-guide/verl.md>`_ 。
+4. 更多特性信息可参考 `MindSpeed Verl 文档 <https://gitee.com/ascend/MindSpeed/blob/master/docs/user-guide/verl_articulation.md>`_ 。
 
 支持现状
 -----------------------------------

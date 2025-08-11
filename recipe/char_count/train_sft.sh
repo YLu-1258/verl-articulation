@@ -4,7 +4,7 @@ nproc_per_node=1
 save_path=./models/sft
 
 torchrun --standalone --nnodes=1 --nproc_per_node=$nproc_per_node \
-     -m verl.trainer.fsdp_sft_trainer \
+     -m verl_articulation.trainer.fsdp_sft_trainer \
     data.train_files=$HOME/data/char_count/sft/train.parquet \
     data.val_files=$HOME/data/char_count/sft/test.parquet \
     data.prompt_key=prompt \

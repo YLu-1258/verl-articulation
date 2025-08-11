@@ -33,7 +33,7 @@ REF_PARAM_OFFLOAD=${REF_PARAM_OFFLOAD:-$COMMON_PARAM_OFFLOAD}
 train_path=$HOME/data/geo3k/train.parquet
 test_path=$HOME/data/geo3k/test.parquet
 
-python3 -m verl.trainer.main_ppo --config-path=config \
+python3 -m verl_articulation.trainer.main_ppo --config-path=config \
     --config-name='ppo_megatron_trainer.yaml'\
     algorithm.adv_estimator=grpo \
     data.train_files="$train_path" \

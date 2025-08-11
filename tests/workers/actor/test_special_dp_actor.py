@@ -19,9 +19,9 @@ import torch.nn as nn
 from tensordict import TensorDict
 from transformers import AutoModelForCausalLM, Qwen3Config
 
-from verl import DataProto
-from verl.workers.actor.dp_actor import DataParallelPPOActor
-from verl.workers.config import FSDPActorConfig, OptimizerConfig
+from verl_articulation import DataProto
+from verl_articulation.workers.actor.dp_actor import DataParallelPPOActor
+from verl_articulation.workers.config import FSDPActorConfig, OptimizerConfig
 
 
 class MockTransformerModel(nn.Module):

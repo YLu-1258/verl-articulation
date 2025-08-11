@@ -1,6 +1,6 @@
 # # Tests layout
 
-# Each folder under tests/ corresponds to a test category for a sub-namespace in verl. For instance:
+# Each folder under tests/ corresponds to a test category for a sub-namespace in verl_articulation. For instance:
 # - `tests/trainer` for testing functionality related to `verl/trainer`
 # - `tests/models` for testing functionality related to `verl/models`
 # - ...
@@ -126,8 +126,8 @@ jobs:
       - name: Test Megatron checkpoints merging function (Qwen3 Actor and Critic)
         run: |
           exp_name="qwen3-0.6b-megatron-gsm8k-minimal"
-          python -m verl.model_merger test --backend megatron --tie-word-embedding --local_dir checkpoints/verl-test/${exp_name}/global_step_1/actor --test_hf_dir checkpoints/verl-test/${exp_name}/global_step_1/actor/huggingface
-          python -m verl.model_merger test --backend megatron --is-value-model --local_dir checkpoints/verl-test/${exp_name}/global_step_1/critic --test_hf_dir checkpoints/verl-test/${exp_name}/global_step_1/critic/huggingface
+          python -m verl_articulation.model_merger test --backend megatron --tie-word-embedding --local_dir checkpoints/verl-test/${exp_name}/global_step_1/actor --test_hf_dir checkpoints/verl-test/${exp_name}/global_step_1/actor/huggingface
+          python -m verl_articulation.model_merger test --backend megatron --is-value-model --local_dir checkpoints/verl-test/${exp_name}/global_step_1/critic --test_hf_dir checkpoints/verl-test/${exp_name}/global_step_1/critic/huggingface
       - name: clean up
         run: |
           rm -rf checkpoints

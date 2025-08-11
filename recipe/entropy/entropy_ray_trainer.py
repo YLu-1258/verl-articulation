@@ -25,21 +25,21 @@ import numpy as np
 import torch
 from tqdm import tqdm
 
-from verl import DataProto
-from verl.trainer.ppo.metric_utils import (
+from verl_articulation import DataProto
+from verl_articulation.trainer.ppo.metric_utils import (
     compute_data_metrics,
     compute_throughout_metrics,
     compute_timing_metrics,
     reduce_metrics,
 )
-from verl.trainer.ppo.ray_trainer import (
+from verl_articulation.trainer.ppo.ray_trainer import (
     AdvantageEstimator,
     RayPPOTrainer,
     apply_kl_penalty,
     compute_advantage,
     compute_response_mask,
 )
-from verl.utils.profiler import simple_timer
+from verl_articulation.utils.profiler import simple_timer
 
 
 class RayEntropyTrainer(RayPPOTrainer):
@@ -56,7 +56,7 @@ class RayEntropyTrainer(RayPPOTrainer):
         """
         from omegaconf import OmegaConf
 
-        from verl.utils.tracking import Tracking
+        from verl_articulation.utils.tracking import Tracking
 
         logger = Tracking(
             project_name=self.config.trainer.project_name,

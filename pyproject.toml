@@ -12,13 +12,13 @@ build-backend = "setuptools.build_meta"
 # project (PEP 621 metadata)
 # -------------------------------
 [project]
-name = "verl"
-# We'll mark the version as "dynamic" because it's read from the file "verl/version/version" 
+name = "verl_articulation"
+# We'll mark the version as "dynamic" because it's read from the file "verl_articulation/version/version" 
 # (PEP 621 calls this "dynamic version"). 
 # The actual version is specified in the [tool.setuptools.dynamic] section below.
 dynamic = ["version", "dependencies", "optional-dependencies", "authors", "urls"]
 
-description = "verl: Volcano Engine Reinforcement Learning for LLM"
+description = "verl_articulation: Volcano Engine Reinforcement Learning for LLM with Custom Reward Logging"
 license = {text = "Apache-2.0"}  # Changed from file to text format
 readme = {file = "README.md", content-type = "text/markdown"}
 requires-python = ">=3.10"
@@ -33,7 +33,7 @@ line-length = 120
 exclude = ["tests/workers/rollout/test_sglang_async_rollout_sf_tools.py", "scripts/legacy_model_merger.py"]
 
 [tool.ruff.lint]
-isort = {known-first-party = ["verl"]}
+isort = {known-first-party = ["verl_articulation"]}
 # c.f. https://github.com/vllm-project/vllm/blob/ce8d6b75fc0586045df75ee1568a5b5f9957251b/pyproject.toml
 select = [
     # pycodestyle
@@ -79,11 +79,11 @@ ignore_errors = true
 
 [[tool.mypy.overrides]]
 module = [
-"verl.trainer.config.algorithm",
-"verl.trainer.ppo.core_algos",
-"verl.trainer.ppo.reward",
-"verl.workers.reward_manager",
-"verl.workers.reward_manager.*",
+"verl_articulation.trainer.config.algorithm",
+"verl_articulation.trainer.ppo.core_algos",
+"verl_articulation.trainer.ppo.reward",
+"verl_articulation.workers.reward_manager",
+"verl_articulation.workers.reward_manager.*",
 ]
 ignore_errors = false
 
@@ -95,18 +95,18 @@ ignore_errors = false
 # This corresponds to `include_package_data=True` in setup.py.
 include-package-data = true
 
-# We read the version from a file in 'verl/version/version'
+# We read the version from a file in 'verl_articulation/version/version'
 [tool.setuptools.dynamic]
-version = {file = "verl/version/version"}
+version = {file = "verl_articulation/version/version"}
 
 # If you need to mimic `package_dir={'': '.'}`:
 [tool.setuptools.package-dir]
 "" = "."
 
 # If you need to include specific non-Python data (like YAML files or version file):
-# This is the rough equivalent of package_data={'': ['version/*'], 'verl': ['trainer/config/*.yaml']}
+# This is the rough equivalent of package_data={'': ['version/*'], 'verl_articulation': ['trainer/config/*.yaml']}
 [tool.setuptools.package-data]
-verl = [
+verl_articulation = [
   "version/*",
   "trainer/config/*.yaml",
   "trainer/config/*/*.yaml",

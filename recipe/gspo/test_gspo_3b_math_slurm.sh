@@ -116,7 +116,7 @@ gsm8k_test_path=/data/gsm8k/test.parquet
 train_files="['$gsm8k_train_path']"
 test_files="['$gsm8k_test_path']"
 
-python3 -m verl.trainer.main_ppo \
+python3 -m verl_articulation.trainer.main_ppo \
     algorithm.adv_estimator=${adv_estimator} \
     actor_rollout_ref.actor.policy_loss.loss_mode=${loss_mode} \
     data.train_files="${train_files}" \

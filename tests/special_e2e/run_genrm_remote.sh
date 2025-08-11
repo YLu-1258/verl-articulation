@@ -42,7 +42,7 @@ if ! wait_for_server; then
     exit 1
 fi
 
-CUDA_VISIBLE_DEVICES=4,5,6,7 python3 -m verl.trainer.main_ppo \
+CUDA_VISIBLE_DEVICES=4,5,6,7 python3 -m verl_articulation.trainer.main_ppo \
     algorithm.adv_estimator=grpo \
     data.train_files=${HOME}/data/gsm8k/train.parquet \
     data.val_files=${HOME}/data/gsm8k/test.parquet \

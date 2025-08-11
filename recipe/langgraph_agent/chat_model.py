@@ -36,8 +36,8 @@ from langchain_core.tools import StructuredTool
 from langchain_core.utils.function_calling import convert_to_openai_tool
 from pydantic import Field
 
-from verl.experimental.agent_loop.agent_loop import AgentLoopOutput, AsyncLLMServerManager
-from verl.experimental.agent_loop.tool_parser import ToolParser
+from verl_articulation.experimental.agent_loop.agent_loop import AgentLoopOutput, AsyncLLMServerManager
+from verl_articulation.experimental.agent_loop.tool_parser import ToolParser
 
 logger = logging.getLogger(__file__)
 logger.setLevel(os.getenv("VERL_LOGGING_LEVEL", "WARN"))

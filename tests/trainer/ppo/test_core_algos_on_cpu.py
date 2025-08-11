@@ -18,8 +18,8 @@ import unittest
 import pytest
 import torch
 
-import verl.trainer.ppo.core_algos
-from verl.trainer.ppo.core_algos import compute_gae_advantage_return, get_adv_estimator_fn, register_adv_est
+import verl_articulation.trainer.ppo.core_algos
+from verl_articulation.trainer.ppo.core_algos import compute_gae_advantage_return, get_adv_estimator_fn, register_adv_est
 
 
 def mock_test_fn():
@@ -29,15 +29,15 @@ def mock_test_fn():
 class TestRegisterAdvEst(unittest.TestCase):
     def setUp(self):
         """Clear the registry before each test"""
-        verl.trainer.ppo.core_algos.ADV_ESTIMATOR_REGISTRY.clear()
-        verl.trainer.ppo.core_algos.ADV_ESTIMATOR_REGISTRY = {
+        verl_articulation.trainer.ppo.core_algos.ADV_ESTIMATOR_REGISTRY.clear()
+        verl_articulation.trainer.ppo.core_algos.ADV_ESTIMATOR_REGISTRY = {
             "gae": lambda x: x * 2,
             "vtrace": lambda x: x + 1,
         }
-        self.ADV_ESTIMATOR_REGISTRY = verl.trainer.ppo.core_algos.ADV_ESTIMATOR_REGISTRY
+        self.ADV_ESTIMATOR_REGISTRY = verl_articulation.trainer.ppo.core_algos.ADV_ESTIMATOR_REGISTRY
 
     def tearDown(self) -> None:
-        verl.trainer.ppo.core_algos.ADV_ESTIMATOR_REGISTRY.clear()
+        verl_articulation.trainer.ppo.core_algos.ADV_ESTIMATOR_REGISTRY.clear()
         return super().tearDown()
 
     def test_register_new_function(self):

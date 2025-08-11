@@ -16,7 +16,7 @@ save_contents="['model', 'optimizer', 'extra']"
 export WANDB_MODE=offline
 save_contents="['hf_model']"
 
-python3 -m verl.trainer.main_ppo \
+python3 -m verl_articulation.trainer.main_ppo \
     algorithm.adv_estimator=grpo \
     data.train_files="$train_files" \
     data.val_files="$test_files" \

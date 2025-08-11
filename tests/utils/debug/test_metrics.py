@@ -15,8 +15,8 @@ import unittest
 
 import torch
 
-from verl.protocol import DataProto
-from verl.utils.debug.metrics import calculate_debug_metrics
+from verl_articulation.protocol import DataProto
+from verl_articulation.utils.debug.metrics import calculate_debug_metrics
 
 
 class TestMetrics(unittest.TestCase):

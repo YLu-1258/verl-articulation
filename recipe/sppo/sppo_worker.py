@@ -18,13 +18,13 @@ import os
 
 from omegaconf import OmegaConf, open_dict
 
-from verl.single_controller.base.decorator import Dispatch, register
-from verl.utils.checkpoint.fsdp_checkpoint_manager import FSDPCheckpointManager
-from verl.utils.flops_counter import FlopsCounter
-from verl.utils.fsdp_utils import offload_fsdp_model_to_cpu, offload_fsdp_optimizer
-from verl.utils.import_utils import import_external_libs
-from verl.utils.profiler import log_gpu_memory_usage
-from verl.workers.fsdp_workers import ActorRolloutRefWorker
+from verl_articulation.single_controller.base.decorator import Dispatch, register
+from verl_articulation.utils.checkpoint.fsdp_checkpoint_manager import FSDPCheckpointManager
+from verl_articulation.utils.flops_counter import FlopsCounter
+from verl_articulation.utils.fsdp_utils import offload_fsdp_model_to_cpu, offload_fsdp_optimizer
+from verl_articulation.utils.import_utils import import_external_libs
+from verl_articulation.utils.profiler import log_gpu_memory_usage
+from verl_articulation.workers.fsdp_workers import ActorRolloutRefWorker
 
 logger = logging.getLogger(__file__)
 logger.setLevel(os.getenv("VERL_PPO_LOGGING_LEVEL", "WARN"))

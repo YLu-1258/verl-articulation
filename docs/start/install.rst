@@ -131,7 +131,7 @@ so we put them in the :ref:`Post-installation` step.
 
 .. note::
 
-    The installation steps below are recommended configurations for the latest version of verl.
+    The installation steps below are recommended configurations for the latest version of verl_articulation.
     If you are trying to customize your own environment, please ignore the strict constraints.
 
 We need to install the following pre-requisites:
@@ -224,7 +224,7 @@ own post-training jobs.
 
 .. code:: bash
 
-   git clone https://github.com/volcengine/verl.git
+   git clone https://github.com/volcengine/verl_articulation.git
    cd verl
    pip install --no-deps -e .
 
@@ -249,7 +249,7 @@ If you encounter issues about package versions during running verl, please updat
 Install with AMD GPUs - ROCM kernel support
 ------------------------------------------------------------------
 
-When you run on AMD GPUs (MI300) with ROCM platform, you cannot use the previous quickstart to run verl. You should follow the following steps to build a docker and run it.
+When you run on AMD GPUs (MI300) with ROCM platform, you cannot use the previous quickstart to run verl_articulation. You should follow the following steps to build a docker and run it.
 If you encounter any issues in using AMD GPUs running verl, feel free to contact me - `Yusheng Su <https://yushengsu-thu.github.io/>`_.
 
 Find the docker for AMD ROCm: `docker/Dockerfile.rocm <https://github.com/volcengine/verl/blob/main/docker/Dockerfile.rocm>`_

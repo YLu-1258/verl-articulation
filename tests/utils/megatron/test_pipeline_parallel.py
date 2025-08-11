@@ -14,8 +14,8 @@
 
 import pytest
 
-from verl.model_merger.megatron_model_merger import get_dynamic_pipeline_shards
-from verl.utils.megatron.pipeline_parallel import make_batch_generator
+from verl_articulation.model_merger.megatron_model_merger import get_dynamic_pipeline_shards
+from verl_articulation.utils.megatron.pipeline_parallel import make_batch_generator
 
 
 def test_make_batch_generator_no_vpp():

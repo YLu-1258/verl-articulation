@@ -13,7 +13,7 @@ ngpu_per_node=1
 total_procs=$(( nproc_per_gpu * nnodes * ngpu_per_node ))
 mini_batch_size=$(( total_procs ))
 
-python3 -m verl.trainer.main_ppo \
+python3 -m verl_articulation.trainer.main_ppo \
     algorithm.adv_estimator=grpo \
     data.train_files=data/gsm8k/train.parquet \
     data.val_files=data/gsm8k/test.parquet \

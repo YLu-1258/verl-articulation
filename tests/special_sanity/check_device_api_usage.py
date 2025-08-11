@@ -14,7 +14,7 @@
 
 """
 This CI test is used for checking whether device api usage is irregular, suggest using api in `verl/utils/device.py`.
-Search targets include .py files in verl/recipe and verl/verl.
+Search targets include .py files in verl/recipe and verl/verl_articulation.
 Some files that must contain ".cuda", "cuda" or "nccl" keyword is pre-defined in whitelist below.
 """
 

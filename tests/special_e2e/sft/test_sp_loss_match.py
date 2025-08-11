@@ -17,8 +17,8 @@ import torch.distributed
 from tensordict import TensorDict
 from torch.distributed.device_mesh import init_device_mesh
 
-from verl.trainer.fsdp_sft_trainer import FSDPSFTTrainer
-from verl.utils.distributed import initialize_global_process_group
+from verl_articulation.trainer.fsdp_sft_trainer import FSDPSFTTrainer
+from verl_articulation.utils.distributed import initialize_global_process_group
 
 
 def test_trainer_forward_consistency(trainer: FSDPSFTTrainer, total_steps: int = 4):
@@ -106,9 +106,9 @@ def create_trainer(config):
     )
 
     # build tokenizer and datasets first
-    from verl.trainer.fsdp_sft_trainer import create_sft_dataset
-    from verl.utils import hf_tokenizer
-    from verl.utils.fs import copy_to_local
+    from verl_articulation.trainer.fsdp_sft_trainer import create_sft_dataset
+    from verl_articulation.utils import hf_tokenizer
+    from verl_articulation.utils.fs import copy_to_local
 
     local_model_path = copy_to_local(src=config.model.partial_pretrain, verbose=True)
     tokenizer = hf_tokenizer(local_model_path, trust_remote_code=config.model.trust_remote_code)

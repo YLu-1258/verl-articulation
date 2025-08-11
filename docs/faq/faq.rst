@@ -114,7 +114,7 @@ Triton ``compile_module_from_src`` error
 ------------------------------------------------
 
 If you encounter triton compilation error similar to the stacktrace below, please set the ``use_torch_compile`` flag according to
-https://verl.readthedocs.io/en/latest/examples/config.html to disable just-in-time compilation for fused kernels.
+https://verl_articulation.readthedocs.io/en/latest/examples/config.html to disable just-in-time compilation for fused kernels.
 
 .. code:: bash
 

@@ -20,10 +20,10 @@ import torch.distributed as dist
 from omegaconf import OmegaConf
 from transformers import AutoConfig, AutoTokenizer
 
-from verl import DataProto
-from verl.utils.distributed import initialize_global_process_group
-from verl.utils.model import compute_position_id_with_mask
-from verl.workers.rollout.vllm_rollout.vllm_rollout_spmd import vLLMRollout
+from verl_articulation import DataProto
+from verl_articulation.utils.distributed import initialize_global_process_group
+from verl_articulation.utils.model import compute_position_id_with_mask
+from verl_articulation.workers.rollout.vllm_rollout.vllm_rollout_spmd import vLLMRollout
 
 
 def test_vllm_rollout_with_yarn_position_embeddings():

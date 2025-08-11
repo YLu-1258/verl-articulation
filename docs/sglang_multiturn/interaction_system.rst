@@ -48,7 +48,7 @@ The interaction registry system allows loading and managing multiple named inter
 
 .. code-block:: python
 
-    from verl.interactions.utils.interaction_registry import initialize_interactions_from_config
+    from verl_articulation.interactions.utils.interaction_registry import initialize_interactions_from_config
     
     # Load multiple interactions from config
     interaction_map = initialize_interactions_from_config("config.yaml")
@@ -63,7 +63,7 @@ All interaction agents must implement the ``BaseInteraction`` abstract class:
 
 .. code-block:: python
 
-    from verl.interactions.base import BaseInteraction
+    from verl_articulation.interactions.base import BaseInteraction
     from typing import Dict, Any, List, Tuple, Optional
 
     class BaseInteraction:
@@ -119,7 +119,7 @@ Create an interaction configuration file (e.g., ``interaction_config.yaml``):
 
     interaction:
       - name: "gsm8k"
-        class_name: "verl.interactions.gsm8k_interaction.Gsm8kInteraction"
+        class_name: "verl_articulation.interactions.gsm8k_interaction.Gsm8kInteraction"
         config: {}
 
 **Multiple Interactions (New Format)**
@@ -128,7 +128,7 @@ Create an interaction configuration file (e.g., ``interaction_config.yaml``):
 
     interaction:
       - name: "gsm8k"
-        class_name: "verl.interactions.gsm8k_interaction.Gsm8kInteraction"
+        class_name: "verl_articulation.interactions.gsm8k_interaction.Gsm8kInteraction"
         config: {}
       - name: "custom_solver"
         class_name: "custom.interactions.CustomInteraction"
@@ -136,7 +136,7 @@ Create an interaction configuration file (e.g., ``interaction_config.yaml``):
           solver_type: "advanced"
           timeout: 30
       - name: "code_verifier"
-        class_name: "verl.interactions.base.BaseInteraction"
+        class_name: "verl_articulation.interactions.base.BaseInteraction"
         config: 
           verification_mode: "strict"
 
@@ -147,7 +147,7 @@ If no ``name`` field is provided, the system will automatically generate one fro
 .. code-block:: yaml
 
     interaction:
-      - class_name: "verl.interactions.gsm8k_interaction.Gsm8kInteraction"
+      - class_name: "verl_articulation.interactions.gsm8k_interaction.Gsm8kInteraction"
         config: {}
         # Automatically generates name: "gsm8k"
 
@@ -160,8 +160,8 @@ The GSM8K interaction demonstrates a complete implementation for math problem-so
 
 .. code-block:: python
 
-    from verl.interactions.base import BaseInteraction
-    from verl.utils.reward_score import gsm8k
+    from verl_articulation.interactions.base import BaseInteraction
+    from verl_articulation.utils.reward_score import gsm8k
     from uuid import uuid4
 
     class Gsm8kInteraction(BaseInteraction):
@@ -215,7 +215,7 @@ Include interaction configuration in your training command:
 
 .. code-block:: bash
 
-    python3 -m verl.trainer.main_ppo \\
+    python3 -m verl_articulation.trainer.main_ppo \\
         --config-path="$CONFIG_PATH" \\
         --config-name='gsm8k_multiturn_grpo_w_interaction' \\
         algorithm.adv_estimator=grpo \\
@@ -324,7 +324,7 @@ You can design sophisticated training scenarios using multiple interactions:
                 "interaction": [
                     {
                         "name": "basic_math",
-                        "class_name": "verl.interactions.gsm8k_interaction.Gsm8kInteraction",
+                        "class_name": "verl_articulation.interactions.gsm8k_interaction.Gsm8kInteraction",
                         "config": {"difficulty": "easy"}
                     },
                     {

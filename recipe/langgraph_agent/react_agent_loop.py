@@ -30,7 +30,7 @@ from recipe.langgraph_agent.chat_model import (
     MaxTokenExceededError,
     convert_to_agent_output,
 )
-from verl.experimental.agent_loop.agent_loop import AgentLoopBase, AgentLoopOutput
+from verl_articulation.experimental.agent_loop.agent_loop import AgentLoopBase, AgentLoopOutput
 
 
 async def call_model(state: MessagesState, config: RunnableConfig):

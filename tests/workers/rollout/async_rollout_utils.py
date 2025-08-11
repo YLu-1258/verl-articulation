@@ -15,11 +15,11 @@
 import ray
 from omegaconf import DictConfig
 
-from verl.single_controller.ray import RayClassWithInitArgs, RayWorkerGroup
-from verl.single_controller.ray.base import create_colocated_worker_cls
-from verl.trainer.ppo.ray_trainer import ResourcePoolManager, Role
-from verl.workers.fsdp_workers import AsyncActorRolloutRefWorker
-from verl.workers.rollout.async_server import AsyncLLMServerManager
+from verl_articulation.single_controller.ray import RayClassWithInitArgs, RayWorkerGroup
+from verl_articulation.single_controller.ray.base import create_colocated_worker_cls
+from verl_articulation.trainer.ppo.ray_trainer import ResourcePoolManager, Role
+from verl_articulation.workers.fsdp_workers import AsyncActorRolloutRefWorker
+from verl_articulation.workers.rollout.async_server import AsyncLLMServerManager
 
 
 def init_async_rollout_manager(config: DictConfig) -> AsyncLLMServerManager:

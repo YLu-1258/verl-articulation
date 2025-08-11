@@ -98,7 +98,7 @@ data:
   datagen:
 
     # The path to the file containing your customized data generation class.
-    # E.g. 'pkg://verl.experimental.dynamic_dataset.dynamicgen_dataset'
+    # E.g. 'pkg://verl_articulation.experimental.dynamic_dataset.dynamicgen_dataset'
     path: null
 
     # The class name of the data generation class within the specified file.
@@ -576,8 +576,8 @@ actor_rollout_ref:
   # profiler configs
   profiler:
 
-    # Required when using verl.utils.omega_conf_to_dataclass to instantiate dataclass configs
-    _target_: verl.utils.profiler.ProfilerConfig
+    # Required when using verl_articulation.utils.omega_conf_to_dataclass to instantiate dataclass configs
+    _target_: verl_articulation.utils.profiler.ProfilerConfig
 
     # True for each task has its own database, False for all tasks in one training step share one database.
     discrete: False
@@ -738,11 +738,11 @@ critic:
     load_contents: ${critic.checkpoint.save_contents}
 
   # profiler configs
-  # the corresponding dataclass is verl.utils.profiler.ProfilerConfig.
+  # the corresponding dataclass is verl_articulation.utils.profiler.ProfilerConfig.
   profiler:
 
-    # Required when using verl.utils.omega_conf_to_dataclass to instantiate dataclass configs
-    _target_: verl.utils.profiler.ProfilerConfig
+    # Required when using verl_articulation.utils.omega_conf_to_dataclass to instantiate dataclass configs
+    _target_: verl_articulation.utils.profiler.ProfilerConfig
 
     # True for each task has its own database, False for all tasks in one training step share one database.
     discrete: False
@@ -855,8 +855,8 @@ reward_model:
   # profiler configs
   profiler:
 
-    # Required when using verl.utils.omega_conf_to_dataclass to instantiate dataclass configs
-    _target_: verl.utils.profiler.ProfilerConfig
+    # Required when using verl_articulation.utils.omega_conf_to_dataclass to instantiate dataclass configs
+    _target_: verl_articulation.utils.profiler.ProfilerConfig
 
     # True for each task has its own database, False for all tasks in one training step share one database.
     discrete: False
@@ -880,8 +880,8 @@ custom_reward_function:
 # config for the algorithm
 algorithm:
 
-  # Required when using verl.utils.omega_conf_to_dataclass to instantiate dataclass configs
-  _target_: verl.trainer.config.AlgoConfig
+  # Required when using verl_articulation.utils.omega_conf_to_dataclass to instantiate dataclass configs
+  _target_: verl_articulation.trainer.config.AlgoConfig
 
   # Discount factor for future rewards
   gamma: 1.0
@@ -904,8 +904,8 @@ algorithm:
   # KL control configuration
   kl_ctrl:
 
-    # Required when using verl.utils.omega_conf_to_dataclass to instantiate dataclass configs
-    _target_: verl.trainer.config.KLControlConfig
+    # Required when using verl_articulation.utils.omega_conf_to_dataclass to instantiate dataclass configs
+    _target_: verl_articulation.trainer.config.KLControlConfig
 
     # KL control type: "fixed" or "adaptive"
     type: fixed

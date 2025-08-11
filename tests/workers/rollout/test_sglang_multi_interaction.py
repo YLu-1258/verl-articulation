@@ -30,8 +30,8 @@ import torch.distributed as dist
 from omegaconf import DictConfig, OmegaConf
 from transformers import AutoTokenizer
 
-from verl.interactions.base import BaseInteraction
-from verl.workers.rollout.sglang_rollout.sglang_rollout import SGLangRollout
+from verl_articulation.interactions.base import BaseInteraction
+from verl_articulation.workers.rollout.sglang_rollout.sglang_rollout import SGLangRollout
 
 
 class MockInteraction(BaseInteraction):
@@ -201,7 +201,7 @@ class TestSGLangMultiInteraction:
                 )
 
                 # Test interaction selection logic
-                from verl.workers.rollout.schemas import AsyncRolloutRequest, AsyncRolloutRequestStateEnum, Message
+                from verl_articulation.workers.rollout.schemas import AsyncRolloutRequest, AsyncRolloutRequestStateEnum, Message
 
                 # Create a mock request with specific interaction name
                 req = AsyncRolloutRequest(

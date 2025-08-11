@@ -25,7 +25,7 @@ def main(config):
         config_dict: Hydra configuration dictionary containing training parameters.
     """
     print(config)
-    from verl.utils.config import omega_conf_to_dataclass
+    from verl_articulation.utils.config import omega_conf_to_dataclass
 
     profiler_config = omega_conf_to_dataclass(config.critic.profiler)
     print(profiler_config)

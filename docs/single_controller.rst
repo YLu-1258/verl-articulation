@@ -1,4 +1,4 @@
-The Design of ``verl.single_controller``
+The Design of ``verl_articulation.single_controller``
 ==============================================
 
 Last updated: 05/21/2025.
@@ -10,7 +10,7 @@ Preface
 
 We prepared this document for developers of ``verl``, particularly those
 interested in understanding or contributing to the
-``verl.single_controller`` module. It is not intended for end users, but
+``verl_articulation.single_controller`` module. It is not intended for end users, but
 for contributors seeking to understand the architectural rationale and
 internal mechanics.
 
@@ -138,7 +138,7 @@ of ``RayWorkerGroup``, two key steps occur:
 
    initialization_and_binding_of_worker_group
 
-The binding procedure is the heart of ``verl.single_controller``.
+The binding procedure is the heart of ``verl_articulation.single_controller``.
 
 **Key function:**
 `WorkerGroup._bind_worker_method <https://github.com/volcengine/verl/blob/c59ab2f4788f9a910836a9f2f53dcdb62dfa314e/verl/single_controller/base/worker_group.py#L143>`__
@@ -246,7 +246,7 @@ workers) of the ``worker_group``:
 .. code:: python
 
    def dispatch_dp_compute_data_proto(worker_group, *args, **kwargs):
-       from verl.single_controller.base.worker_group import WorkerGroup
+       from verl_articulation.single_controller.base.worker_group import WorkerGroup
 
        assert isinstance(worker_group, WorkerGroup)
        # Note: enable auto padding for dp compute DatapProto
@@ -321,15 +321,15 @@ code with minimal changes to their existing logic.
 
 --------------
 
-Beyond RL Post-Training: Generalizing ``verl.single_controller``
+Beyond RL Post-Training: Generalizing ``verl_articulation.single_controller``
 ----------------------------------------------------------------
 
-The ``verl.single_controller`` module generalizes well beyond
+The ``verl_articulation.single_controller`` module generalizes well beyond
 reinforcement learning. It provides a clean abstraction to batch-process
 remote method calls, with automatic input/output handling.
 
 By minimizing the gap between single-process and multi-process scripts,
-``verl.single_controller`` opens the door to distributed computing in
+``verl_articulation.single_controller`` opens the door to distributed computing in
 broader domains — not limited to RL post-training.
 
 We hope this design inspires more examples and extensions from the

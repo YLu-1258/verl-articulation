@@ -56,7 +56,7 @@ actor_max_token_len_per_gpu=$(( (max_prompt_length + max_response_length) * 2 ))
 critic_max_token_len_per_gpu=$(( (max_prompt_length + max_response_length) * 4 ))
 
 
-python3 -m verl.trainer.main_ppo \
+python3 -m verl_articulation.trainer.main_ppo \
     algorithm.adv_estimator=$adv_estimator \
     algorithm.use_kl_in_reward=$use_kl_in_reward \
     algorithm.kl_ctrl.kl_coef=$kl_coef \

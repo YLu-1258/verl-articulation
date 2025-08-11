@@ -1,6 +1,6 @@
 set -x
 
-python3 -m verl.trainer.main_ppo \
+python3 -m verl_articulation.trainer.main_ppo \
     algorithm.adv_estimator=gae \
     algorithm.use_pf_ppo=True \
     algorithm.pf_ppo.reweight_method=pow \  # ["pow", "max_min", "max_random"]

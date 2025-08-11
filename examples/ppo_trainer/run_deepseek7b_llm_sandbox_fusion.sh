@@ -1,6 +1,6 @@
 set -x
 
-python3 -m verl.trainer.main_ppo \
+python3 -m verl_articulation.trainer.main_ppo \
     reward_model.sandbox_fusion.url='https://xxxxxxxxx.apigateway-cn-beijing.volceapi.com/run_code' \
     reward_model.sandbox_fusion.max_concurrent=128 \
     reward_model.reward_manager=prime \

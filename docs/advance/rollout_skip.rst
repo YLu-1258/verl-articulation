@@ -26,7 +26,7 @@ This is an example of how to patch rollout_skip in RayPPOTrainer.
 .. code-block:: python
 
     #* Import the RolloutSkip class
-    from verl.utils.rollout_skip import RolloutSkip
+    from verl_articulation.utils.rollout_skip import RolloutSkip
 
     ...
     class RayPPOTrainer:

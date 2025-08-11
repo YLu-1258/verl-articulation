@@ -4,7 +4,7 @@ data_path=$HOME/data/gsm8k/test.parquet
 save_path=$HOME/data/gsm8k/deepseek_v2_lite_gen_test.parquet
 model_path=deepseek-ai/deepseek-llm-7b-chat
 
-python3 -m verl.trainer.main_generation \
+python3 -m verl_articulation.trainer.main_generation \
     trainer.nnodes=1 \
     trainer.n_gpus_per_node=8 \
     data.path=$data_path \

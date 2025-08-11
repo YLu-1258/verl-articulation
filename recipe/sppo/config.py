@@ -14,7 +14,7 @@
 
 from dataclasses import dataclass
 
-from verl.workers.config import FSDPActorConfig
+from verl_articulation.workers.config import FSDPActorConfig
 
 
 @dataclass

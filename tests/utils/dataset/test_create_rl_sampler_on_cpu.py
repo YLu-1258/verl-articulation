@@ -22,8 +22,8 @@ import torch
 from omegaconf import DictConfig, OmegaConf
 from torch.utils.data import Dataset, RandomSampler
 
-from verl.experimental.dataset.sampler import AbstractCurriculumSampler
-from verl.trainer.main_ppo import create_rl_sampler
+from verl_articulation.experimental.dataset.sampler import AbstractCurriculumSampler
+from verl_articulation.trainer.main_ppo import create_rl_sampler
 
 
 class RandomCurriculumSampler(AbstractCurriculumSampler):

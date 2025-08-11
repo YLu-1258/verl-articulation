@@ -1,6 +1,6 @@
 # Start from the verl base image
 # Dockerfile.base
-FROM verlai/verl:base-verl0.4-cu124-cudnn9.8-torch2.6-fa2.7.4
+from verl_articulationai/verl:base-verl0.4-cu124-cudnn9.8-torch2.6-fa2.7.4
 
 # Define environments
 ENV MAX_JOBS=32

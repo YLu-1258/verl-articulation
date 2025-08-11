@@ -49,7 +49,7 @@ could do whatever user wants, such as
 
            Args:
                sampling_params (Dict[str, Any]): LLM sampling params.
-               **kwargs: dataset fields from `verl.utils.dataset.RLHFDataset`.
+               **kwargs: dataset fields from `verl_articulation.utils.dataset.RLHFDataset`.
 
            Returns:
                AgentLoopOutput: Agent loop output.

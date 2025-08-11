@@ -14,7 +14,7 @@
 
 import pytest
 
-from verl.base_config import BaseConfig
+from verl_articulation.base_config import BaseConfig
 
 
 @pytest.fixture

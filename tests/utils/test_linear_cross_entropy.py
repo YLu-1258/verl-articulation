@@ -33,10 +33,10 @@ import os
 
 import torch
 
-import verl.utils.torch_functional as verl_F
-from verl.utils.experimental.torch_functional import FusedLinearForPPO
-from verl.utils.kernel.linear_cross_entropy import linear_cross_entropy
-from verl.utils.torch_functional import logprobs_from_logits
+import verl_articulation.utils.torch_functional as verl_F
+from verl_articulation.utils.experimental.torch_functional import FusedLinearForPPO
+from verl_articulation.utils.kernel.linear_cross_entropy import linear_cross_entropy
+from verl_articulation.utils.torch_functional import logprobs_from_logits
 
 compute_entropy_from_logits = torch.compile(verl_F.entropy_from_logits, dynamic=True)
 fused_linear_for_ppo = FusedLinearForPPO()

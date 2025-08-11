@@ -21,11 +21,11 @@ import torch.distributed
 from tensordict import TensorDict
 from transformers import AutoConfig
 
-from verl import DataProto
-from verl.workers.config import FSDPCriticConfig, OptimizerConfig
-from verl.workers.config.critic import FSDPCriticModelCfg
-from verl.workers.config.engine import FSDPEngineConfig
-from verl.workers.fsdp_workers import CriticWorker
+from verl_articulation import DataProto
+from verl_articulation.workers.config import FSDPCriticConfig, OptimizerConfig
+from verl_articulation.workers.config.critic import FSDPCriticModelCfg
+from verl_articulation.workers.config.engine import FSDPEngineConfig
+from verl_articulation.workers.fsdp_workers import CriticWorker
 
 
 class TestCriticWorker(unittest.TestCase):

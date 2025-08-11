@@ -22,8 +22,8 @@ import hydra
 import ray
 from omegaconf import OmegaConf
 
-from verl.trainer.ppo.reward import load_reward_manager
-from verl.utils.device import is_cuda_available
+from verl_articulation.trainer.ppo.reward import load_reward_manager
+from verl_articulation.utils.device import is_cuda_available
 
 from .dapo_ray_trainer import RayDAPOTrainer
 
@@ -63,7 +63,7 @@ class TaskRunner:
 
         from omegaconf import OmegaConf
 
-        from verl.utils.fs import copy_to_local
+        from verl_articulation.utils.fs import copy_to_local
 
         print(f"TaskRunner hostname: {socket.gethostname()}, PID: {os.getpid()}")
 
@@ -74,31 +74,31 @@ class TaskRunner:
         local_path = copy_to_local(config.actor_rollout_ref.model.path)
 
         # instantiate tokenizer
-        from verl.utils import hf_processor, hf_tokenizer
+        from verl_articulation.utils import hf_processor, hf_tokenizer
 
         tokenizer = hf_tokenizer(local_path)
         processor = hf_processor(local_path, use_fast=True)  # used for multimodal LLM, could be none
 
-        from verl.single_controller.ray import RayWorkerGroup
+        from verl_articulation.single_controller.ray import RayWorkerGroup
 
         # define worker classes
         if config.actor_rollout_ref.actor.strategy in {"fsdp", "fsdp2"}:
             assert config.critic.strategy in {"fsdp", "fsdp2"}
 
-            from verl.workers.fsdp_workers import ActorRolloutRefWorker, CriticWorker
+            from verl_articulation.workers.fsdp_workers import ActorRolloutRefWorker, CriticWorker
 
             ray_worker_group_cls = RayWorkerGroup
 
         elif config.actor_rollout_ref.actor.strategy == "megatron":
             assert config.actor_rollout_ref.actor.strategy == config.critic.strategy
-            from verl.workers.megatron_workers import ActorRolloutRefWorker, CriticWorker
+            from verl_articulation.workers.megatron_workers import ActorRolloutRefWorker, CriticWorker
 
             ray_worker_group_cls = RayWorkerGroup
 
         else:
             raise NotImplementedError
 
-        from verl.trainer.ppo.ray_trainer import ResourcePoolManager, Role
+        from verl_articulation.trainer.ppo.ray_trainer import ResourcePoolManager, Role
 
         role_worker_mapping = {
             Role.ActorRollout: ray.remote(ActorRolloutRefWorker),
@@ -122,9 +122,9 @@ class TaskRunner:
         # - The reward type depends on the tag of the data
         if config.reward_model.enable:
             if config.reward_model.strategy in {"fsdp", "fsdp2"}:
-                from verl.workers.fsdp_workers import RewardModelWorker
+                from verl_articulation.workers.fsdp_workers import RewardModelWorker
             elif config.reward_model.strategy == "megatron":
-                from verl.workers.megatron_workers import RewardModelWorker
+                from verl_articulation.workers.megatron_workers import RewardModelWorker
             else:
                 raise NotImplementedError
             role_worker_mapping[Role.RewardModel] = ray.remote(RewardModelWorker)

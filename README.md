@@ -12,7 +12,7 @@
 [![Twitter](https://img.shields.io/twitter/follow/verl_project)](https://twitter.com/verl_project)
 <a href="https://join.slack.com/t/verlgroup/shared_invite/zt-2w5p9o4c3-yy0x2Q56s_VlGLsJ93A6vA"><img src="https://img.shields.io/badge/Slack-verl-blueviolet?logo=slack&amp"></a>
 <a href="https://arxiv.org/pdf/2409.19256"><img src="https://img.shields.io/static/v1?label=EuroSys&message=Paper&color=red"></a>
-[![Documentation](https://img.shields.io/badge/documentation-blue)](https://verl.readthedocs.io/en/latest/)
+[![Documentation](https://img.shields.io/badge/documentation-blue)](https://verl_articulation.readthedocs.io/en/latest/)
 <a href="https://raw.githubusercontent.com/eric-haibin-lin/verl-community/refs/heads/main/WeChat.JPG"><img src="https://img.shields.io/badge/微信-green?logo=wechat&amp"></a>
 
 </div>
@@ -47,7 +47,7 @@ verl is fast with:
 - [2025/08] verl is presented in the [PyTorch Expert Exchange Webinar](https://www.youtube.com/watch?v=Vd79NmmqY3Q&t=2s). [Slides](https://github.com/eric-haibin-lin/verl-community/blob/main/slides/verl_talk_pytorch_2025_08.pdf) available.
 - [2025/07] The [ReTool](https://arxiv.org/pdf/2504.11536) recipe is fully open sourced. [Blog](https://www.notion.so/verl-reTool-recipe-Using-multi-round-conversations-and-code-sandboxing-to-improve-the-math-of-large-23a8b5b7feba80b386b2e5b5e3c1cde0)
 - [2025/07] The first verl meetup will be held at ICML Vancouver on July 16th! Please [join us](https://lu.ma/0ek2nyao) if you are at ICML! (onsite only)
-- [2025/06] verl with Megatron backend enables large MoE models such as [DeepSeek-671b and Qwen3-236b](https://verl.readthedocs.io/en/latest/perf/dpsk.html).
+- [2025/06] verl with Megatron backend enables large MoE models such as [DeepSeek-671b and Qwen3-236b](https://verl_articulation.readthedocs.io/en/latest/perf/dpsk.html).
 - [2025/03] [DAPO](https://dapo-sia.github.io/) is the open-sourced SOTA RL algorithm that achieves 50 points on AIME 2024 based on the Qwen2.5-32B pre-trained model, surpassing the previous SOTA achieved by DeepSeek's GRPO (DeepSeek-R1-Zero-Qwen-32B). DAPO's training is fully powered by verl and the reproduction code is available in `recipe/dapo` now.
 <details><summary> more... </summary>
 <ul>
@@ -78,14 +78,14 @@ verl is fast with:
 - **vLLM**, **SGLang** and **HF Transformers** for rollout generation.
 - Compatible with Hugging Face Transformers and Modelscope Hub: [Qwen-3](https://github.com/volcengine/verl/blob/main/examples/grpo_trainer/run_qwen3-8b.sh), Qwen-2.5, Llama3.1, Gemma2, DeepSeek-LLM, etc
 - Supervised fine-tuning.
-- Reinforcement learning with [PPO](examples/ppo_trainer/), [GRPO](examples/grpo_trainer/), [GSPO](recipe/gspo/), [ReMax](examples/remax_trainer/), [REINFORCE++](https://verl.readthedocs.io/en/latest/examples/config.html#algorithm), [RLOO](examples/rloo_trainer/), [PRIME](recipe/prime/), [DAPO](recipe/dapo/), [DrGRPO](recipe/drgrpo), [KL_Cov & Clip_Cov](recipe/entropy) etc.
+- Reinforcement learning with [PPO](examples/ppo_trainer/), [GRPO](examples/grpo_trainer/), [GSPO](recipe/gspo/), [ReMax](examples/remax_trainer/), [REINFORCE++](https://verl_articulation.readthedocs.io/en/latest/examples/config.html#algorithm), [RLOO](examples/rloo_trainer/), [PRIME](recipe/prime/), [DAPO](recipe/dapo/), [DrGRPO](recipe/drgrpo), [KL_Cov & Clip_Cov](recipe/entropy) etc.
   - Support model-based reward and function-based reward (verifiable reward) for math, [coding](https://github.com/volcengine/verl/tree/main/recipe/dapo), etc
   - Support vision-language models (VLMs) and [multi-modal RL](examples/grpo_trainer/run_qwen2_5_vl-7b.sh) with Qwen2.5-vl, Kimi-VL
   - [Multi-turn with tool calling](https://github.com/volcengine/verl/tree/main/examples/sglang_multiturn)
 - LLM alignment recipes such as [Self-play preference optimization (SPPO)](https://github.com/volcengine/verl/tree/main/recipe/sppo)
 - Flash attention 2, [sequence packing](examples/ppo_trainer/run_qwen2-7b_seq_balance.sh), [sequence parallelism](examples/ppo_trainer/run_deepseek7b_llm_sp2.sh) support via DeepSpeed Ulysses, [LoRA](examples/sft/gsm8k/run_qwen_05_peft.sh), [Liger-kernel](examples/sft/gsm8k/run_qwen_05_sp2_liger.sh).
 - Scales up to 671B models and hundreds of GPUs with [expert parallelism](https://github.com/volcengine/verl/pull/1467)
-- Multi-gpu [LoRA RL](https://verl.readthedocs.io/en/latest/advance/ppo_lora.html) support to save memory.
+- Multi-gpu [LoRA RL](https://verl_articulation.readthedocs.io/en/latest/advance/ppo_lora.html) support to save memory.
 - Experiment tracking with wandb, swanlab, mlflow and tensorboard.
 
 ## Upcoming Features and Changes
@@ -99,43 +99,43 @@ verl is fast with:
 
 ## Getting Started
 
-<a href="https://verl.readthedocs.io/en/latest/index.html"><b>Documentation</b></a>
+<a href="https://verl_articulation.readthedocs.io/en/latest/index.html"><b>Documentation</b></a>
 
 **Quickstart:**
 
-- [Installation](https://verl.readthedocs.io/en/latest/start/install.html)
-- [Quickstart](https://verl.readthedocs.io/en/latest/start/quickstart.html)
-- [Programming Guide](https://verl.readthedocs.io/en/latest/hybrid_flow.html) & [Tech Talk](https://hcqnc.xetlk.com/sl/3vACOK) (in Chinese)
-- [PPO in verl](https://verl.readthedocs.io/en/latest/algo/ppo.html)
-- [GRPO in verl](https://verl.readthedocs.io/en/latest/algo/grpo.html)
+- [Installation](https://verl_articulation.readthedocs.io/en/latest/start/install.html)
+- [Quickstart](https://verl_articulation.readthedocs.io/en/latest/start/quickstart.html)
+- [Programming Guide](https://verl_articulation.readthedocs.io/en/latest/hybrid_flow.html) & [Tech Talk](https://hcqnc.xetlk.com/sl/3vACOK) (in Chinese)
+- [PPO in verl](https://verl_articulation.readthedocs.io/en/latest/algo/ppo.html)
+- [GRPO in verl](https://verl_articulation.readthedocs.io/en/latest/algo/grpo.html)
 
 **Running a PPO example step-by-step:**
 
-- [Prepare Data for Post-Training](https://verl.readthedocs.io/en/latest/preparation/prepare_data.html)
-- [Implement Reward Function for Dataset](https://verl.readthedocs.io/en/latest/preparation/reward_function.html)
-- [PPO Example Architecture](https://verl.readthedocs.io/en/latest/examples/ppo_code_architecture.html)
-- [Config Explanation](https://verl.readthedocs.io/en/latest/examples/config.html)
+- [Prepare Data for Post-Training](https://verl_articulation.readthedocs.io/en/latest/preparation/prepare_data.html)
+- [Implement Reward Function for Dataset](https://verl_articulation.readthedocs.io/en/latest/preparation/reward_function.html)
+- [PPO Example Architecture](https://verl_articulation.readthedocs.io/en/latest/examples/ppo_code_architecture.html)
+- [Config Explanation](https://verl_articulation.readthedocs.io/en/latest/examples/config.html)
 
 **Reproducible algorithm baselines:**
 
-- [RL performance on coding, math](https://verl.readthedocs.io/en/latest/algo/baseline.html)
+- [RL performance on coding, math](https://verl_articulation.readthedocs.io/en/latest/algo/baseline.html)
 
 **For code explanation and advance usage (extension):**
 
 - PPO Trainer and Workers
-  - [PPO Ray Trainer](https://verl.readthedocs.io/en/latest/workers/ray_trainer.html)
-  - [PyTorch FSDP Backend](https://verl.readthedocs.io/en/latest/workers/fsdp_workers.html)
-  - [Megatron-LM Backend](https://verl.readthedocs.io/en/latest/index.html)
+  - [PPO Ray Trainer](https://verl_articulation.readthedocs.io/en/latest/workers/ray_trainer.html)
+  - [PyTorch FSDP Backend](https://verl_articulation.readthedocs.io/en/latest/workers/fsdp_workers.html)
+  - [Megatron-LM Backend](https://verl_articulation.readthedocs.io/en/latest/index.html)
 
 - Advanced Usage and Extension
-  - [Add Models with the FSDP Backend](https://verl.readthedocs.io/en/latest/advance/fsdp_extension.html)
-  - [Add Models with the Megatron-LM Backend](https://verl.readthedocs.io/en/latest/advance/megatron_extension.html)
-  - [Multi-turn Rollout Support](https://verl.readthedocs.io/en/latest/sglang_multiturn/multiturn.html)
-  - [Search Tool Integration](https://verl.readthedocs.io/en/latest/sglang_multiturn/search_tool_example.html)
-  - [Sandbox Fusion Integration](https://verl.readthedocs.io/en/latest/examples/sandbox_fusion_example.html)
+  - [Add Models with the FSDP Backend](https://verl_articulation.readthedocs.io/en/latest/advance/fsdp_extension.html)
+  - [Add Models with the Megatron-LM Backend](https://verl_articulation.readthedocs.io/en/latest/advance/megatron_extension.html)
+  - [Multi-turn Rollout Support](https://verl_articulation.readthedocs.io/en/latest/sglang_multiturn/multiturn.html)
+  - [Search Tool Integration](https://verl_articulation.readthedocs.io/en/latest/sglang_multiturn/search_tool_example.html)
+  - [Sandbox Fusion Integration](https://verl_articulation.readthedocs.io/en/latest/examples/sandbox_fusion_example.html)
   - [Deployment using Separate GPU Resources](https://github.com/volcengine/verl/tree/main/examples/split_placement)
-  - [Extend to Other RL(HF) algorithms](https://verl.readthedocs.io/en/latest/advance/dpo_extension.html)
-  - [Ray API design tutorial](https://verl.readthedocs.io/en/latest/advance/placement.html)
+  - [Extend to Other RL(HF) algorithms](https://verl_articulation.readthedocs.io/en/latest/advance/dpo_extension.html)
+  - [Ray API design tutorial](https://verl_articulation.readthedocs.io/en/latest/advance/placement.html)
 
 **Blogs from the community**
 
@@ -152,7 +152,7 @@ verl is fast with:
 
 ## Performance Tuning Guide
 
-The performance is essential for on-policy RL algorithm. We have written a detailed [performance tuning guide](https://verl.readthedocs.io/en/latest/perf/perf_tuning.html) to help you optimize performance.
+The performance is essential for on-policy RL algorithm. We have written a detailed [performance tuning guide](https://verl_articulation.readthedocs.io/en/latest/perf/perf_tuning.html) to help you optimize performance.
 
 ## Upgrade to vLLM >= v0.8.2
 
@@ -160,7 +160,7 @@ verl now supports vLLM>=0.8.2 when using FSDP as the training backend. Please re
 
 ## Use Latest SGLang
 
-SGLang is fully supported with verl, and SGLang RL Group is working extensively on building unique features, including multi-turn agentic RL, VLM RLHF, server-based RL, and partial rollout. Please refer to [this document](https://verl.readthedocs.io/en/latest/workers/sglang_worker.html) for the installation guide and more information.
+SGLang is fully supported with verl, and SGLang RL Group is working extensively on building unique features, including multi-turn agentic RL, VLM RLHF, server-based RL, and partial rollout. Please refer to [this document](https://verl_articulation.readthedocs.io/en/latest/workers/sglang_worker.html) for the installation guide and more information.
 
 ## Upgrade to FSDP2
 
@@ -253,4 +253,4 @@ Founded in 2023, ByteDance Seed Team is dedicated to crafting the industry's mos
 </div>
 ---
 
-We are HIRING! Send us an [email](mailto:the.verl.project@gmail.com) if you are interested in internship/FTE opportunities in RL for agents.
+We are HIRING! Send us an [email](mailto:the.verl_articulation.project@gmail.com) if you are interested in internship/FTE opportunities in RL for agents.

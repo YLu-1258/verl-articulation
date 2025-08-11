@@ -16,9 +16,9 @@
 import ray
 import torch
 
-from verl import DataProto
-from verl.single_controller.base import Worker
-from verl.single_controller.base.decorator import make_nd_compute_dataproto_dispatch_fn, register
+from verl_articulation import DataProto
+from verl_articulation.single_controller.base import Worker
+from verl_articulation.single_controller.base.decorator import make_nd_compute_dataproto_dispatch_fn, register
 
 
 @ray.remote
@@ -71,7 +71,7 @@ def test_dist_global_info_wg():
     # register a infer dist info with tp=4, dp=2
     # register a train dist info with tp=2, dp=2, pp=2
     # test the correctness of data dispatch and computation
-    from verl.single_controller.ray import RayClassWithInitArgs, RayResourcePool, RayWorkerGroup
+    from verl_articulation.single_controller.ray import RayClassWithInitArgs, RayResourcePool, RayWorkerGroup
 
     ray.init()
 

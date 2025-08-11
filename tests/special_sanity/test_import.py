@@ -16,10 +16,10 @@
 def test_import():
     import verl
 
-    print(verl.__version__)
+    print(verl_articulation.__version__)
 
 
 def test_single_controller_import():
-    import verl.single_controller
+    import verl_articulation.single_controller
 
-    print(verl.single_controller.__version__)
+    print(verl_articulation.single_controller.__version__)

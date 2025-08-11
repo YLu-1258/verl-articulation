@@ -20,7 +20,7 @@ from setuptools import find_packages, setup
 
 version_folder = os.path.dirname(os.path.join(os.path.abspath(__file__)))
 
-with open(os.path.join(version_folder, "verl/version/version")) as f:
+with open(os.path.join(version_folder, "verl_articulation/version/version")) as f:
     __version__ = f.read().strip()
 
 install_requires = [
@@ -75,20 +75,20 @@ this_directory = Path(__file__).parent
 long_description = (this_directory / "README.md").read_text()
 
 setup(
-    name="verl",
+    name="verl_articulation",
     version=__version__,
     package_dir={"": "."},
     packages=find_packages(where="."),
-    url="https://github.com/volcengine/verl",
+    url="https://github.com/YLu-1258/verl-articulation",
     license="Apache 2.0",
-    author="Bytedance - Seed - MLSys",
+    author="Bytedance - Seed - MLSys (Modified by YLu-1258)",
     author_email="zhangchi.usc1992@bytedance.com, gmsheng@connect.hku.hk",
-    description="verl: Volcano Engine Reinforcement Learning for LLM",
+    description="verl-articulation: Volcano Engine Reinforcement Learning for LLM with Custom Reward Logging",
     install_requires=install_requires,
     extras_require=extras_require,
     package_data={
         "": ["version/*"],
-        "verl": ["trainer/config/*.yaml"],
+        "verl_articulation": ["trainer/config/*.yaml"],
     },
     include_package_data=True,
     long_description=long_description,

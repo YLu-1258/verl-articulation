@@ -14,7 +14,7 @@ if [ "$rollout_mode" = "async" ]; then
     return_raw_chat="True"
 fi
 
-python3 -m verl.trainer.main_ppo \
+python3 -m verl_articulation.trainer.main_ppo \
     algorithm.adv_estimator=gae \
     data.train_files="$train_files" \
     data.val_files="$test_files" \

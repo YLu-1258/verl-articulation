@@ -17,7 +17,7 @@ from time import sleep
 
 import requests
 
-from verl.utils.reward_score.math import last_boxed_only_string, remove_boxed
+from verl_articulation.utils.reward_score.math import last_boxed_only_string, remove_boxed
 
 BASE_URL = "http://localhost:30000"
 API_KEY = "EMPTY"
@@ -79,7 +79,7 @@ def compute_reward(response):
 
 def compute_score(data_source, solution_str, ground_truth, extra_info):
     split = extra_info["split"]
-    from verl.utils.reward_score import default_compute_score
+    from verl_articulation.utils.reward_score import default_compute_score
 
     func_rm_score = default_compute_score(data_source, solution_str, ground_truth, extra_info)
 

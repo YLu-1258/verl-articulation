@@ -16,9 +16,9 @@ import torch
 import torch.distributed as dist
 import torch.multiprocessing as mp
 
-from verl import DataProto
-from verl.utils.model import create_random_mask
-from verl.utils.seqlen_balancing import (
+from verl_articulation import DataProto
+from verl_articulation.utils.model import create_random_mask
+from verl_articulation.utils.seqlen_balancing import (
     ceildiv,
     get_reverse_idx,
     prepare_dynamic_batch,

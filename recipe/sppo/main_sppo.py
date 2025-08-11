@@ -22,7 +22,7 @@ import os
 import hydra
 import ray
 
-from verl.trainer.ppo.reward import load_reward_manager
+from verl_articulation.trainer.ppo.reward import load_reward_manager
 
 from .sppo_ray_trainer import RaySPPOTrainer
 
@@ -57,7 +57,7 @@ class TaskRunner:
 
         from omegaconf import OmegaConf
 
-        from verl.utils.fs import copy_to_local
+        from verl_articulation.utils.fs import copy_to_local
 
         pprint(OmegaConf.to_container(config, resolve=True))  # resolve=True will eval symbol values
         OmegaConf.resolve(config)
@@ -66,7 +66,7 @@ class TaskRunner:
         local_path = copy_to_local(config.actor_rollout_ref.model.path)
 
         # instantiate tokenizer
-        from verl.utils import hf_processor, hf_tokenizer
+        from verl_articulation.utils import hf_processor, hf_tokenizer
 
         trust_remote_code = config.data.get("trust_remote_code", False)
         tokenizer = hf_tokenizer(local_path, trust_remote_code=trust_remote_code)
@@ -75,7 +75,7 @@ class TaskRunner:
         # define worker classes
         if config.actor_rollout_ref.actor.strategy in {"fsdp", "fsdp2"}:
             assert config.critic.strategy in {"fsdp", "fsdp2"}
-            from verl.single_controller.ray import RayWorkerGroup
+            from verl_articulation.single_controller.ray import RayWorkerGroup
 
             from .sppo_worker import SPPOActorRolloutRefWorker  # , CriticWorker
 
@@ -84,8 +84,8 @@ class TaskRunner:
 
         elif config.actor_rollout_ref.actor.strategy == "megatron":
             assert config.actor_rollout_ref.actor.strategy == config.critic.strategy
-            from verl.single_controller.ray import RayWorkerGroup
-            from verl.workers.megatron_workers import ActorRolloutRefWorker
+            from verl_articulation.single_controller.ray import RayWorkerGroup
+            from verl_articulation.workers.megatron_workers import ActorRolloutRefWorker
 
             actor_rollout_cls = ActorRolloutRefWorker
             ray_worker_group_cls = RayWorkerGroup
@@ -93,7 +93,7 @@ class TaskRunner:
         else:
             raise NotImplementedError
 
-        from verl.trainer.ppo.ray_trainer import ResourcePoolManager, Role
+        from verl_articulation.trainer.ppo.ray_trainer import ResourcePoolManager, Role
 
         # sppo does not use critic
         role_worker_mapping = {
@@ -116,9 +116,9 @@ class TaskRunner:
         # - The reward type depends on the tag of the data
         if config.reward_model.enable:
             if config.reward_model.strategy in {"fsdp", "fsdp2"}:
-                from verl.workers.fsdp_workers import RewardModelWorker
+                from verl_articulation.workers.fsdp_workers import RewardModelWorker
             elif config.reward_model.strategy == "megatron":
-                from verl.workers.megatron_workers import RewardModelWorker
+                from verl_articulation.workers.megatron_workers import RewardModelWorker
             else:
                 raise NotImplementedError
             role_worker_mapping[Role.RewardModel] = ray.remote(RewardModelWorker)

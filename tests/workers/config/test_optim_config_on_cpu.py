@@ -14,7 +14,7 @@
 
 import pytest
 
-from verl.workers.config.optimizer import FSDPOptimizerConfig
+from verl_articulation.workers.config.optimizer import FSDPOptimizerConfig
 
 
 class TestFSDPOptimizerConfigCPU:

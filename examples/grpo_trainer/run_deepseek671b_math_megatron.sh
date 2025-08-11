@@ -49,7 +49,7 @@ actor_ppo_max_token_len=$(((max_prompt_length + max_response_length) * 1))
 infer_ppo_max_token_len=$(((max_prompt_length + max_response_length) * 3))
 
 # RAY_ADDRESS='auto' ray job submit --working-dir . --
-python3 -m verl.trainer.main_ppo --config-path=./config --config-name='ppo_megatron_trainer'\
+python3 -m verl_articulation.trainer.main_ppo --config-path=./config --config-name='ppo_megatron_trainer'\
     algorithm.adv_estimator=grpo \
     data.train_files="$train_files" \
     data.val_files="$test_files" \

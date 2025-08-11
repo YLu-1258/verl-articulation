@@ -255,8 +255,8 @@ actor_rollout_ref:
     calculate_log_probs: False
     # Nsight system profiler configs
   profiler:
-    # Required when using verl.utils.omega_conf_to_dataclass to instantiate dataclass configs
-    _target_: verl.utils.profiler.ProfilerConfig
+    # Required when using verl_articulation.utils.omega_conf_to_dataclass to instantiate dataclass configs
+    _target_: verl_articulation.utils.profiler.ProfilerConfig
     discrete: False
     all_ranks: False
     ranks: []
@@ -333,8 +333,8 @@ critic:
     load_contents: ${critic.checkpoint.save_contents}
   # Nsight system profiler configs
   profiler:
-    # Required when using verl.utils.omega_conf_to_dataclass to instantiate dataclass configs
-    _target_: verl.utils.profiler.ProfilerConfig
+    # Required when using verl_articulation.utils.omega_conf_to_dataclass to instantiate dataclass configs
+    _target_: verl_articulation.utils.profiler.ProfilerConfig
     discrete: False
     all_ranks: False
     ranks: []
@@ -376,8 +376,8 @@ reward_model:
     memory_limit_mb: 1024 # Max memory limit for each sandbox process in MB
   # Nsight system profiler configs
   profiler:
-    # Required when using verl.utils.omega_conf_to_dataclass to instantiate dataclass configs
-    _target_: verl.utils.profiler.ProfilerConfig
+    # Required when using verl_articulation.utils.omega_conf_to_dataclass to instantiate dataclass configs
+    _target_: verl_articulation.utils.profiler.ProfilerConfig
     discrete: False
     all_ranks: False
     ranks: []
@@ -387,8 +387,8 @@ custom_reward_function:
   name: compute_score
 
 algorithm:
-  # Required when using verl.utils.omega_conf_to_dataclass to instantiate dataclass configs
-  _target_: verl.trainer.config.AlgoConfig
+  # Required when using verl_articulation.utils.omega_conf_to_dataclass to instantiate dataclass configs
+  _target_: verl_articulation.trainer.config.AlgoConfig
   gamma: 1.0
   lam: 1.0
   adv_estimator: gae
@@ -396,8 +396,8 @@ algorithm:
   use_kl_in_reward: False
   kl_penalty: kl  # how to estimate kl divergence
   kl_ctrl:
-    # Required when using verl.utils.omega_conf_to_dataclass to instantiate dataclass configs
-    _target_: verl.trainer.config.KLControlConfig
+    # Required when using verl_articulation.utils.omega_conf_to_dataclass to instantiate dataclass configs
+    _target_: verl_articulation.trainer.config.KLControlConfig
     type: fixed
     kl_coef: 0.001
     horizon: 10000

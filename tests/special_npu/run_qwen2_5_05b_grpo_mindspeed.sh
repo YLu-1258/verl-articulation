@@ -16,7 +16,7 @@ if [ "$USE_DIST_CKPT" = "True" ]; then
 fi
 
 
-python3 -m verl.trainer.main_ppo --config-path=config \
+python3 -m verl_articulation.trainer.main_ppo --config-path=config \
     --config-name='ppo_megatron_trainer.yaml' \
     algorithm.adv_estimator=grpo \
     data.train_files=$HOME/data/gsm8k/train.parquet \

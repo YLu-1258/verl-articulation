@@ -20,16 +20,16 @@ import torch.distributed
 from omegaconf import OmegaConf
 from torch.distributed.device_mesh import init_device_mesh
 
-from verl import DataProto
-from verl.models.transformers.monkey_patch import apply_monkey_patch
-from verl.single_controller.base import Worker
-from verl.single_controller.base.decorator import Dispatch, register
-from verl.utils import hf_tokenizer
-from verl.utils.checkpoint.fsdp_checkpoint_manager import FSDPCheckpointManager
-from verl.utils.device import get_device_id, get_device_name, get_nccl_backend
-from verl.utils.flops_counter import FlopsCounter
-from verl.utils.fs import copy_local_path_from_hdfs
-from verl.utils.fsdp_utils import (
+from verl_articulation import DataProto
+from verl_articulation.models.transformers.monkey_patch import apply_monkey_patch
+from verl_articulation.single_controller.base import Worker
+from verl_articulation.single_controller.base.decorator import Dispatch, register
+from verl_articulation.utils import hf_tokenizer
+from verl_articulation.utils.checkpoint.fsdp_checkpoint_manager import FSDPCheckpointManager
+from verl_articulation.utils.device import get_device_id, get_device_name, get_nccl_backend
+from verl_articulation.utils.flops_counter import FlopsCounter
+from verl_articulation.utils.fs import copy_local_path_from_hdfs
+from verl_articulation.utils.fsdp_utils import (
     get_fsdp_wrap_policy,
     get_init_weight_context_manager,
     init_fn,
@@ -38,10 +38,10 @@ from verl.utils.fsdp_utils import (
     offload_fsdp_model_to_cpu,
     offload_fsdp_optimizer,
 )
-from verl.utils.import_utils import import_external_libs
-from verl.utils.profiler import log_gpu_memory_usage
-from verl.workers.fsdp_workers import create_device_mesh, get_sharding_strategy
-from verl.workers.sharding_manager.fsdp_ulysses import FSDPUlyssesShardingManager
+from verl_articulation.utils.import_utils import import_external_libs
+from verl_articulation.utils.profiler import log_gpu_memory_usage
+from verl_articulation.workers.fsdp_workers import create_device_mesh, get_sharding_strategy
+from verl_articulation.workers.sharding_manager.fsdp_ulysses import FSDPUlyssesShardingManager
 
 from .prime_core_algos import compute_dpo_abs_accuracy, compute_dpo_accuracy
 
@@ -91,8 +91,8 @@ class PRIMERewardModelWorker(Worker):
         from torch.distributed.fsdp import FullyShardedDataParallel as FSDP
         from torch.distributed.fsdp import MixedPrecision
 
-        from verl.utils.model import print_model_size
-        from verl.utils.torch_dtypes import PrecisionType
+        from verl_articulation.utils.model import print_model_size
+        from verl_articulation.utils.torch_dtypes import PrecisionType
 
         local_path = copy_local_path_from_hdfs(config.model.path)
 
@@ -234,7 +234,7 @@ class PRIMERewardModelWorker(Worker):
 
         print(f"Total steps: {total_steps}, num_warmup_steps: {num_warmup_steps}")
 
-        from verl.utils.torch_functional import get_constant_schedule_with_warmup
+        from verl_articulation.utils.torch_functional import get_constant_schedule_with_warmup
 
         reward_lr_scheduler = get_constant_schedule_with_warmup(
             optimizer=reward_optimizer, num_warmup_steps=num_warmup_steps

@@ -14,8 +14,8 @@
 
 import pytest
 
-import verl.single_controller.base.decorator as decorator_module
-from verl.single_controller.base.decorator import (
+import verl_articulation.single_controller.base.decorator as decorator_module
+from verl_articulation.single_controller.base.decorator import (
     DISPATCH_MODE_FN_REGISTRY,
     Dispatch,
     _check_dispatch_mode,

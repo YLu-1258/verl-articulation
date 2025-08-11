@@ -20,8 +20,8 @@ import torch
 from server import Trainer
 from tensordict import TensorDict
 
-from verl import DataProto
-from verl.single_controller.ray import RayClassWithInitArgs, RayWorkerGroup
+from verl_articulation import DataProto
+from verl_articulation.single_controller.ray import RayClassWithInitArgs, RayWorkerGroup
 
 
 def compute_position_id_with_mask(mask):

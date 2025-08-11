@@ -25,23 +25,23 @@ import numpy as np
 import torch
 from tqdm import tqdm
 
-from verl import DataProto
-from verl.trainer.ppo.core_algos import agg_loss
-from verl.trainer.ppo.metric_utils import (
+from verl_articulation import DataProto
+from verl_articulation.trainer.ppo.core_algos import agg_loss
+from verl_articulation.trainer.ppo.metric_utils import (
     compute_data_metrics,
     compute_throughout_metrics,
     compute_timing_metrics,
     reduce_metrics,
 )
-from verl.trainer.ppo.ray_trainer import (
+from verl_articulation.trainer.ppo.ray_trainer import (
     AdvantageEstimator,
     RayPPOTrainer,
     apply_kl_penalty,
     compute_advantage,
     compute_response_mask,
 )
-from verl.utils.profiler import marked_timer
-from verl.utils.rollout_skip import RolloutSkip
+from verl_articulation.utils.profiler import marked_timer
+from verl_articulation.utils.rollout_skip import RolloutSkip
 
 
 class RayDAPOTrainer(RayPPOTrainer):
@@ -58,7 +58,7 @@ class RayDAPOTrainer(RayPPOTrainer):
         """
         from omegaconf import OmegaConf
 
-        from verl.utils.tracking import Tracking
+        from verl_articulation.utils.tracking import Tracking
 
         logger = Tracking(
             project_name=self.config.trainer.project_name,

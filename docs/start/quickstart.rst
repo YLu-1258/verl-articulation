@@ -82,7 +82,7 @@ You may set ``VERL_USE_MODELSCOPE=True`` to download models from `modelscope <ht
 
 .. code-block:: bash
 
-   PYTHONUNBUFFERED=1 python3 -m verl.trainer.main_ppo \
+   PYTHONUNBUFFERED=1 python3 -m verl_articulation.trainer.main_ppo \
     data.train_files=$HOME/data/gsm8k/train.parquet \
     data.val_files=$HOME/data/gsm8k/test.parquet \
     data.train_batch_size=256 \
@@ -118,11 +118,11 @@ You are expected to see the following logs, indicating training in progress. The
 
 Checkout ``Algorithm Baselines`` page for full training and validation logs for reference.
 
-The checkpoint is saved at the following dir by default: ``checkpoints/${trainer.project_name}/${trainer.experiment_name}``. You can merge the saved checkpoints to huggingface model using ``verl.model_merger`` module, for example:
+The checkpoint is saved at the following dir by default: ``checkpoints/${trainer.project_name}/${trainer.experiment_name}``. You can merge the saved checkpoints to huggingface model using ``verl_articulation.model_merger`` module, for example:
 
 .. code-block:: bash
 
-    python3 -m verl.model_merger merge \
+    python3 -m verl_articulation.model_merger merge \
         --backend fsdp \
         --local_dir checkpoints/${trainer.project_name}/${trainer.experiment_name}/global_step_1/actor \
         --target_dir checkpoints/${trainer.project_name}/${trainer.experiment_name}/global_step_1/actor/huggingface

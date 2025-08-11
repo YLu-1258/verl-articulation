@@ -140,7 +140,7 @@ fi
 
 OPTIM_MEMORY_EFFICIENT=${OPTIM_MEMORY_EFFICIENT:-False}
 
-python3 -m verl.trainer.main_ppo --config-path=config \
+python3 -m verl_articulation.trainer.main_ppo --config-path=config \
     --config-name='ppo_megatron_trainer.yaml'\
     algorithm.adv_estimator="${ADV_ESTIMATOR}" \
     data.train_files="${TRAIN_FILES}" \

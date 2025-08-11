@@ -20,9 +20,9 @@ import ray
 import torch
 from split_monkey_patch import fit
 
-from verl import DataProto
-from verl.trainer.ppo.ray_trainer import RayPPOTrainer
-from verl.utils.reward_score import gsm8k, math
+from verl_articulation import DataProto
+from verl_articulation.trainer.ppo.ray_trainer import RayPPOTrainer
+from verl_articulation.utils.reward_score import gsm8k, math
 
 
 def _select_rm_score_fn(data_source):
@@ -109,7 +109,7 @@ def main_task(config):
 
     from omegaconf import OmegaConf
 
-    from verl.utils.fs import copy_to_local
+    from verl_articulation.utils.fs import copy_to_local
 
     pprint(OmegaConf.to_container(config, resolve=True))  # resolve=True will eval symbol values
     OmegaConf.resolve(config)
@@ -118,29 +118,29 @@ def main_task(config):
     local_path = copy_to_local(config.actor_rollout_ref.model.path)
 
     # instantiate tokenizer
-    from verl.utils import hf_tokenizer
+    from verl_articulation.utils import hf_tokenizer
 
     tokenizer = hf_tokenizer(local_path)
 
     # define worker classes
     if config.actor_rollout_ref.actor.strategy in {"fsdp", "fsdp2"}:
         assert config.critic.strategy in {"fsdp", "fsdp2"}
-        from verl.single_controller.ray import RayWorkerGroup
-        from verl.workers.fsdp_workers import ActorRolloutRefWorker, CriticWorker
+        from verl_articulation.single_controller.ray import RayWorkerGroup
+        from verl_articulation.workers.fsdp_workers import ActorRolloutRefWorker, CriticWorker
 
         ray_worker_group_cls = RayWorkerGroup
 
     elif config.actor_rollout_ref.actor.strategy == "megatron":
         assert config.actor_rollout_ref.actor.strategy == config.critic.strategy
-        from verl.single_controller.ray import RayWorkerGroup
-        from verl.workers.megatron_workers import ActorRolloutRefWorker, CriticWorker
+        from verl_articulation.single_controller.ray import RayWorkerGroup
+        from verl_articulation.workers.megatron_workers import ActorRolloutRefWorker, CriticWorker
 
         ray_worker_group_cls = RayWorkerGroup
 
     else:
         raise NotImplementedError
 
-    from verl.trainer.ppo.ray_trainer import ResourcePoolManager, Role
+    from verl_articulation.trainer.ppo.ray_trainer import ResourcePoolManager, Role
 
     role_worker_mapping = {
         Role.ActorRollout: ray.remote(ActorRolloutRefWorker),
@@ -179,9 +179,9 @@ def main_task(config):
     # - The reward type depends on the tag of the data
     if config.reward_model.enable:
         if config.reward_model.strategy in {"fsdp", "fsdp2"}:
-            from verl.workers.fsdp_workers import RewardModelWorker
+            from verl_articulation.workers.fsdp_workers import RewardModelWorker
         elif config.reward_model.strategy == "megatron":
-            from verl.workers.megatron_workers import RewardModelWorker
+            from verl_articulation.workers.megatron_workers import RewardModelWorker
         else:
             raise NotImplementedError
         role_worker_mapping[Role.RewardModel] = ray.remote(RewardModelWorker)

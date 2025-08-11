@@ -18,7 +18,7 @@ fi
 BATCH_SIZE=16
 EXP_NAME="qwen2.5_0.5b_grpo_lora"
 # step 1. train model with grpo-lora for 1 step
-python3 -m verl.trainer.main_ppo \
+python3 -m verl_articulation.trainer.main_ppo \
     algorithm.adv_estimator=grpo \
     data.train_files=$HOME/data/gsm8k/train.parquet \
     data.val_files=$HOME/data/gsm8k/test.parquet \
@@ -65,7 +65,7 @@ python3 -m verl.trainer.main_ppo \
     trainer.total_epochs=1 $@
 
 # step 2. merge model
-python3 -m verl.model_merger merge \
+python3 -m verl_articulation.model_merger merge \
     --backend fsdp \
     --local_dir checkpoints/verl_grpo_example_gsm8k/${EXP_NAME}/global_step_1/actor/ \
     --target_dir checkpoints/verl_grpo_example_gsm8k/${EXP_NAME}/global_step_1/actor/hf

@@ -50,20 +50,20 @@ Define worker classes
 
    if config.actor_rollout_ref.actor.strategy in {"fsdp", "fsdp2"}: # for FSDP backend
        assert config.critic.strategy in {"fsdp", "fsdp2"}
-       from verl.workers.fsdp_workers import ActorRolloutRefWorker, CriticWorker
-       from verl.single_controller.ray import RayWorkerGroup
+       from verl_articulation.workers.fsdp_workers import ActorRolloutRefWorker, CriticWorker
+       from verl_articulation.single_controller.ray import RayWorkerGroup
        ray_worker_group_cls = RayWorkerGroup
 
    elif config.actor_rollout_ref.actor.strategy == 'megatron': # for Megatron backend
        assert config.actor_rollout_ref.actor.strategy == config.critic.strategy
-       from verl.workers.megatron_workers import ActorRolloutRefWorker, CriticWorker
-       from verl.single_controller.ray.megatron import NVMegatronRayWorkerGroup
+       from verl_articulation.workers.megatron_workers import ActorRolloutRefWorker, CriticWorker
+       from verl_articulation.single_controller.ray.megatron import NVMegatronRayWorkerGroup
        ray_worker_group_cls = NVMegatronRayWorkerGroup # Ray worker class for Megatron-LM
 
    else:
        raise NotImplementedError
 
-   from verl.trainer.ppo.ray_trainer import ResourcePoolManager, Role
+   from verl_articulation.trainer.ppo.ray_trainer import ResourcePoolManager, Role
 
    role_worker_mapping = {
        Role.ActorRollout: ActorRolloutRefWorker,
@@ -141,7 +141,7 @@ Defining reward model/function
    # - finally, we combine all the rewards together
    # - The reward type depends on the tag of the data
    if config.reward_model.enable:
-       from verl.workers.fsdp_workers import RewardModelWorker
+       from verl_articulation.workers.fsdp_workers import RewardModelWorker
        role_worker_mapping[Role.RewardModel] = RewardModelWorker
        mapping[Role.RewardModel] = global_pool_id
     

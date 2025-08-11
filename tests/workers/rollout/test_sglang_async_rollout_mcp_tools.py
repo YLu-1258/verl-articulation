@@ -26,12 +26,12 @@ from tensordict import TensorDict
 from transformers import AutoConfig, AutoTokenizer
 from utils_sglang import get_rollout_config, prepare_inputs
 
-from verl.protocol import DataProto
-from verl.tools.mcp_search_tool import MCPSearchTool
-from verl.tools.schemas import ToolResponse
-from verl.tools.utils.mcp_clients.McpClientManager import MCPClientManager
-from verl.workers.rollout.schemas import AsyncRolloutRequest, AsyncRolloutRequestStateEnum, Message
-from verl.workers.rollout.sglang_rollout.sglang_rollout import SGLangRollout
+from verl_articulation.protocol import DataProto
+from verl_articulation.tools.mcp_search_tool import MCPSearchTool
+from verl_articulation.tools.schemas import ToolResponse
+from verl_articulation.tools.utils.mcp_clients.McpClientManager import MCPClientManager
+from verl_articulation.workers.rollout.schemas import AsyncRolloutRequest, AsyncRolloutRequestStateEnum, Message
+from verl_articulation.workers.rollout.sglang_rollout.sglang_rollout import SGLangRollout
 
 DEFAULT_USER_CONTENT_PREFIX = (
     "Answer the given question. You must conduct reasoning inside <think> and </think> "
@@ -287,7 +287,7 @@ class TestRolloutWithMCPSearchTools:
     def test_tools_registration(self, mock_rollout):
         assert len(mock_rollout._tool_schemas) != 0
         assert "tavily_search_tool" in mock_rollout._tool_map.keys()
-        from verl.tools.mcp_search_tool import MCPSearchTool
+        from verl_articulation.tools.mcp_search_tool import MCPSearchTool
 
         assert isinstance(mock_rollout._tool_map["tavily_search_tool"], MCPSearchTool)
         # depend on the tokenizer

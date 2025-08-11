@@ -23,9 +23,9 @@ import hydra
 import ray
 from omegaconf import OmegaConf
 
-from verl.trainer.constants_ppo import get_ppo_ray_runtime_env
-from verl.trainer.main_ppo import create_rl_dataset, create_rl_sampler
-from verl.trainer.ppo.reward import load_reward_manager
+from verl_articulation.trainer.constants_ppo import get_ppo_ray_runtime_env
+from verl_articulation.trainer.main_ppo import create_rl_dataset, create_rl_sampler
+from verl_articulation.trainer.ppo.reward import load_reward_manager
 
 from .ray_trainer import OneStepOffRayTrainer
 
@@ -75,7 +75,7 @@ class TaskRunner:
 
         from omegaconf import OmegaConf
 
-        from verl.utils.fs import copy_to_local
+        from verl_articulation.utils.fs import copy_to_local
 
         print(f"TaskRunner hostname: {socket.gethostname()}, PID: {os.getpid()}")
 
@@ -90,7 +90,7 @@ class TaskRunner:
         )
 
         # Instantiate the tokenizer and processor.
-        from verl.utils import hf_processor, hf_tokenizer
+        from verl_articulation.utils import hf_processor, hf_tokenizer
 
         trust_remote_code = config.data.get("trust_remote_code", False)
         tokenizer = hf_tokenizer(local_path, trust_remote_code=trust_remote_code)
@@ -100,7 +100,7 @@ class TaskRunner:
         # Define worker classes based on the actor strategy.
         if config.actor_rollout_ref.actor.strategy == "fsdp2":
             assert config.actor_rollout_ref.actor.strategy == config.critic.strategy
-            from verl.single_controller.ray import RayWorkerGroup
+            from verl_articulation.single_controller.ray import RayWorkerGroup
 
             from .fsdp_workers import (
                 ActorRolloutRefWorker,
@@ -118,7 +118,7 @@ class TaskRunner:
 
         elif config.actor_rollout_ref.actor.strategy == "megatron":
             assert config.actor_rollout_ref.actor.strategy == config.critic.strategy
-            from verl.single_controller.ray import RayWorkerGroup
+            from verl_articulation.single_controller.ray import RayWorkerGroup
 
             from .megatron_workers import (
                 ActorRolloutRefWorker,
@@ -173,9 +173,9 @@ class TaskRunner:
         # The reward type depends on the tag of the data
         if config.reward_model.enable:
             if config.reward_model.strategy in ["fsdp2"]:
-                from verl.workers.fsdp_workers import RewardModelWorker
+                from verl_articulation.workers.fsdp_workers import RewardModelWorker
             elif config.reward_model.strategy == "megatron":
-                from verl.workers.megatron_workers import RewardModelWorker
+                from verl_articulation.workers.megatron_workers import RewardModelWorker
             else:
                 raise NotImplementedError
             role_worker_mapping[Role.RewardModel] = ray.remote(RewardModelWorker)
@@ -195,7 +195,7 @@ class TaskRunner:
         )
         resource_pool_manager = ResourcePoolManager(resource_pool_spec=resource_pool_spec, mapping=mapping)
 
-        from verl.utils.dataset.rl_dataset import collate_fn
+        from verl_articulation.utils.dataset.rl_dataset import collate_fn
 
         # Create training and validation datasets.
         train_dataset = create_rl_dataset(config.data.train_files, config.data, tokenizer, processor)

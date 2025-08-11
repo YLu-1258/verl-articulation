@@ -18,9 +18,9 @@ from pathlib import Path
 import pytest
 from hydra import compose, initialize_config_dir
 
-from verl.utils.config import omega_conf_to_dataclass
-from verl.utils.profiler import ProfilerConfig
-from verl.workers.config import (
+from verl_articulation.utils.config import omega_conf_to_dataclass
+from verl_articulation.utils.profiler import ProfilerConfig
+from verl_articulation.workers.config import (
     CriticConfig,
     FSDPCriticConfig,
     McoreCriticConfig,

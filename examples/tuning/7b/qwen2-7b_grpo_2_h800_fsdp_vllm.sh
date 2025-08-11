@@ -8,7 +8,7 @@ model_path=Qwen/Qwen2-7B-Instruct
 train_files="['$gsm8k_train_path']"
 test_files="['$gsm8k_test_path']"
 
-PYTHONPATH=/opt/tiger/open_verl python3 -m verl.trainer.main_ppo \
+PYTHONPATH=/opt/tiger/open_verl python3 -m verl_articulation.trainer.main_ppo \
     algorithm.adv_estimator=grpo \
     data.train_files="$train_files" \
     data.val_files="$test_files" \

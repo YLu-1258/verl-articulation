@@ -22,11 +22,11 @@ from omegaconf import DictConfig
 from transformers.utils import get_json_schema
 
 from tests.experimental.agent_loop.agent_utils import init_agent_loop_manager
-from verl.experimental.agent_loop.agent_loop import get_trajectory_info
-from verl.protocol import DataProto
-from verl.tools.base_tool import BaseTool, OpenAIFunctionToolSchema
-from verl.tools.schemas import ToolResponse
-from verl.utils import hf_tokenizer
+from verl_articulation.experimental.agent_loop.agent_loop import get_trajectory_info
+from verl_articulation.protocol import DataProto
+from verl_articulation.tools.base_tool import BaseTool, OpenAIFunctionToolSchema
+from verl_articulation.tools.schemas import ToolResponse
+from verl_articulation.utils import hf_tokenizer
 
 
 @pytest.fixture

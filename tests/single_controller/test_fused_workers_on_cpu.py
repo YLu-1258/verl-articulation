@@ -14,9 +14,9 @@
 
 import ray
 
-from verl.single_controller.base import Worker
-from verl.single_controller.base.decorator import Dispatch, register
-from verl.single_controller.ray.base import (
+from verl_articulation.single_controller.base import Worker
+from verl_articulation.single_controller.base.decorator import Dispatch, register
+from verl_articulation.single_controller.ray.base import (
     RayClassWithInitArgs,
     RayResourcePool,
     RayWorkerGroup,

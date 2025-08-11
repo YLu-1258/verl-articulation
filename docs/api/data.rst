@@ -5,7 +5,7 @@ Last updated: 05/19/2025 (API docstrings are auto-generated).
 
 DataProto is the interface for data exchange.
 
-The :class:`verl.DataProto` class contains two key members:
+The :class:`verl_articulation.DataProto` class contains two key members:
 
 - batch: a :class:`tensordict.TensorDict` object for the actual data
 - meta_info: a :class:`Dict` with additional meta information
@@ -57,5 +57,5 @@ For more about :class:`tensordict.TensorDict` usage, see the official tensordict
 Core APIs
 ~~~~~~~~~~~~~~~~~
 
-.. autoclass::  verl.DataProto
+.. autoclass::  verl_articulation.DataProto
    :members: to, select, union, make_iterator, concat

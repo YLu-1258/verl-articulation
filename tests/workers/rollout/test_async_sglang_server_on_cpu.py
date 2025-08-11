@@ -21,7 +21,7 @@ from omegaconf import DictConfig
 @patch.dict(
     "sys.modules",
     {
-        "verl.workers.rollout.sglang_rollout.sglang_rollout": MagicMock(SGLangRollout=MagicMock()),
+        "verl_articulation.workers.rollout.sglang_rollout.sglang_rollout": MagicMock(SGLangRollout=MagicMock()),
         "fastapi": MagicMock(FastAPI=MagicMock()),
         "uvicorn": MagicMock(FastAPI=MagicMock()),
         "starlette.requests": MagicMock(Request=MagicMock()),
@@ -34,11 +34,11 @@ class TestAsyncSGLangServer:
         return DictConfig({"actor_rollout_ref": {"rollout": {"tensor_model_parallel_size": 2}}})
 
     @pytest.mark.asyncio
-    @patch("verl.workers.rollout.sglang_rollout.async_sglang_server.ray.util.list_named_actors")
-    @patch("verl.workers.rollout.async_server.AsyncServerBase._start_fastapi_server", new_callable=AsyncMock)
+    @patch("verl_articulation.workers.rollout.sglang_rollout.async_sglang_server.ray.util.list_named_actors")
+    @patch("verl_articulation.workers.rollout.async_server.AsyncServerBase._start_fastapi_server", new_callable=AsyncMock)
     @pytest.mark.filterwarnings("ignore:Ray state API is no longer experimental:DeprecationWarning")
     async def test_init_engine(self, mock_start_fastapi_server, mock_list_actors, server_config):
-        from verl.workers.rollout.sglang_rollout.async_sglang_server import AsyncSGLangServer
+        from verl_articulation.workers.rollout.sglang_rollout.async_sglang_server import AsyncSGLangServer
 
         ActualClassToInstantiate = AsyncSGLangServer
         if hasattr(AsyncSGLangServer, "__ray_metadata__") and hasattr(
@@ -67,7 +67,7 @@ class TestAsyncSGLangServer:
 
         # Verify instance.workers is correctly populated
         with patch(
-            "verl.workers.rollout.sglang_rollout.async_sglang_server.ray.get_actor",
+            "verl_articulation.workers.rollout.sglang_rollout.async_sglang_server.ray.get_actor",
             side_effect=mock_get_actor_side_effect,
         ):
             # nnodes: 2

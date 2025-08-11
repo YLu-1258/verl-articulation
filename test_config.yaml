@@ -1,0 +1,57 @@
+# Minimal VERL Configuration for Testing Custom Reward Function
+
+# Model configuration (using a very small model for testing)
+actor_rollout_ref:
+  model:
+    path: "gpt2"  # Small model for quick testing
+    lora_rank: 0
+  actor:
+    strategy: "fsdp"
+    micro_batch_size_per_gpu: 1
+    grad_accum_steps: 1
+  rollout:
+    n: 2  # Generate 2 responses per prompt
+    mode: "sync"
+
+# Disable critic for simpler testing
+critic:
+  enable: false
+
+# Custom reward function configuration
+custom_reward_function:
+  path: "./test_reward_function.py"
+  name: "test_reward_with_subrewards"
+  reward_kwargs: {}
+
+# Reward model configuration
+reward_model:
+  enable: false
+  launch_reward_fn_async: false
+
+# Data configuration
+data:
+  train_files: ["test_dataset.parquet"]
+  val_files: ["test_dataset.parquet"]
+  train_batch_size: 2
+  val_batch_size: 2
+  shuffle: false
+  reward_fn_key: "data_source"
+
+# Algorithm configuration
+algorithm:
+  adv_estimator: "REINFORCE"  # Simplest advantage estimator
+  use_kl_in_reward: false
+
+# Training configuration
+trainer:
+  total_epochs: 1  # Just one epoch for testing
+  n_gpus_per_node: 1
+  nnodes: 1
+  project_name: "verl_test"
+  experiment_name: "custom_reward_test"
+  logger: ["console"]
+  log_val_generations: 2
+
+# Ray configuration
+ray_init:
+  num_cpus: 2

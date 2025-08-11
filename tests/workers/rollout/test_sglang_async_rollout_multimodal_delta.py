@@ -16,10 +16,10 @@
 
 import pytest
 
-from verl.tools.schemas import ToolResponse
-from verl.utils.dataset.vision_utils import process_image
-from verl.utils.tokenizer import hf_processor
-from verl.workers.rollout.schemas import (
+from verl_articulation.tools.schemas import ToolResponse
+from verl_articulation.utils.dataset.vision_utils import process_image
+from verl_articulation.utils.tokenizer import hf_processor
+from verl_articulation.workers.rollout.schemas import (
     AsyncRolloutRequest,
     AsyncRolloutRequestStateEnum,
     TokenizationSanityCheckModeEnum,

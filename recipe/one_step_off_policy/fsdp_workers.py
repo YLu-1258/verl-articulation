@@ -23,23 +23,23 @@ from torch.distributed.device_mesh import init_device_mesh
 from torch.distributed.fsdp import FullyShardedDataParallel as FSDP
 from transformers import AutoConfig
 
-from verl.single_controller.base import Worker
-from verl.single_controller.base.decorator import Dispatch, make_nd_compute_dataproto_dispatch_fn, register
-from verl.utils import hf_processor, hf_tokenizer, omega_conf_to_dataclass
-from verl.utils.debug import DistProfiler, DistProfilerExtension, log_gpu_memory_usage
-from verl.utils.device import (
+from verl_articulation.single_controller.base import Worker
+from verl_articulation.single_controller.base.decorator import Dispatch, make_nd_compute_dataproto_dispatch_fn, register
+from verl_articulation.utils import hf_processor, hf_tokenizer, omega_conf_to_dataclass
+from verl_articulation.utils.debug import DistProfiler, DistProfilerExtension, log_gpu_memory_usage
+from verl_articulation.utils.device import (
     get_device_name,
     get_nccl_backend,
     get_torch_device,
 )
-from verl.utils.fs import copy_to_local
-from verl.utils.fsdp_utils import (
+from verl_articulation.utils.fs import copy_to_local
+from verl_articulation.utils.fsdp_utils import (
     fsdp_version,
 )
-from verl.utils.import_utils import import_external_libs
-from verl.utils.model import get_generation_config, update_model_config
-from verl.workers.fsdp_workers import ActorRolloutRefWorker as ARRWorker
-from verl.workers.fsdp_workers import CriticWorker
+from verl_articulation.utils.import_utils import import_external_libs
+from verl_articulation.utils.model import get_generation_config, update_model_config
+from verl_articulation.workers.fsdp_workers import ActorRolloutRefWorker as ARRWorker
+from verl_articulation.workers.fsdp_workers import CriticWorker
 
 logger = logging.getLogger(__file__)
 logger.setLevel(os.getenv("VERL_LOGGING_LEVEL", "WARN"))
@@ -53,7 +53,7 @@ class ActorRolloutRefWorker(ARRWorker):
     def _get_actor_params(self):
         assert self._is_actor
         params = self.actor_module_fsdp.state_dict()
-        from verl.utils.model import convert_weight_keys
+        from verl_articulation.utils.model import convert_weight_keys
 
         params = convert_weight_keys(
             params, getattr(self.actor_module_fsdp, "_fsdp_wrapped_module", self.actor_module_fsdp)
@@ -70,7 +70,7 @@ class ActorRolloutRefWorker(ARRWorker):
             inference_model = (
                 self.rollout.inference_engine.llm_engine.model_executor.driver_worker.worker.model_runner.model
             )
-            from verl.utils.vllm.patch import patch_vllm_moe_model_weight_loader
+            from verl_articulation.utils.vllm.patch import patch_vllm_moe_model_weight_loader
 
             patch_vllm_moe_model_weight_loader(inference_model)
         for key, shape, dtype in self._weights_info:
@@ -193,11 +193,11 @@ class RolloutWorker(ActorRolloutRefWorker):
         rollout_name = self.config.rollout.name
         assert rollout_name == "vllm"
 
-        from verl.workers.rollout.vllm_rollout import vLLMRollout
+        from verl_articulation.workers.rollout.vllm_rollout import vLLMRollout
 
         log_gpu_memory_usage(f"Before building {rollout_name} rollout", logger=logger)
 
-        from verl.workers.rollout.vllm_rollout import vLLMAsyncRollout
+        from verl_articulation.workers.rollout.vllm_rollout import vLLMAsyncRollout
 
         vllm_rollout_cls = vLLMRollout if self.config.rollout.mode == "sync" else vLLMAsyncRollout
         rollout = vllm_rollout_cls(

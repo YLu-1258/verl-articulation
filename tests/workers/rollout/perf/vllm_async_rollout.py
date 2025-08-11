@@ -39,10 +39,10 @@ from torch.utils.data import SequentialSampler
 from torchdata.stateful_dataloader import StatefulDataLoader
 
 from tests.experimental.agent_loop.agent_utils import AgentLoopManager, RayWorkerGroup, init_agent_loop_manager
-from verl.protocol import DataProto
-from verl.utils import hf_tokenizer
-from verl.utils.dataset import RLHFDataset
-from verl.utils.dataset.rl_dataset import collate_fn as default_collate_fn
+from verl_articulation.protocol import DataProto
+from verl_articulation.utils import hf_tokenizer
+from verl_articulation.utils.dataset import RLHFDataset
+from verl_articulation.utils.dataset.rl_dataset import collate_fn as default_collate_fn
 
 
 def init_config(n_gpus_per_node) -> DictConfig:

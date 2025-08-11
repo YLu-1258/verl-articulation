@@ -15,8 +15,8 @@
 import os
 import unittest
 
-from verl.utils.config import omega_conf_to_dataclass
-from verl.workers.config import ActorConfig, FSDPActorConfig, McoreActorConfig, OptimizerConfig
+from verl_articulation.utils.config import omega_conf_to_dataclass
+from verl_articulation.workers.config import ActorConfig, FSDPActorConfig, McoreActorConfig, OptimizerConfig
 
 
 class TestActorConfig(unittest.TestCase):
@@ -25,24 +25,24 @@ class TestActorConfig(unittest.TestCase):
     def test_config_inheritance(self):
         """Test that the inheritance hierarchy works correctly."""
         megatron_dict = {
-            "_target_": "verl.workers.config.McoreActorConfig",
+            "_target_": "verl_articulation.workers.config.McoreActorConfig",
             "strategy": "megatron",
             "ppo_mini_batch_size": 256,
             "ppo_micro_batch_size_per_gpu": 256,
             "clip_ratio": 0.2,
             "optim": {
-                "_target_": "verl.workers.config.OptimizerConfig",
+                "_target_": "verl_articulation.workers.config.OptimizerConfig",
                 "lr": 0.1,
             },
         }
         fsdp_dict = {
-            "_target_": "verl.workers.config.FSDPActorConfig",
+            "_target_": "verl_articulation.workers.config.FSDPActorConfig",
             "strategy": "fsdp",
             "ppo_mini_batch_size": 256,
             "ppo_micro_batch_size_per_gpu": 256,
             "clip_ratio": 0.2,
             "optim": {
-                "_target_": "verl.workers.config.OptimizerConfig",
+                "_target_": "verl_articulation.workers.config.OptimizerConfig",
                 "lr": 0.1,
             },
         }
@@ -95,12 +95,12 @@ class TestActorConfig(unittest.TestCase):
     def test_config_get_method(self):
         """Test the get method for backward compatibility."""
         config_dict = {
-            "_target_": "verl.workers.config.ActorConfig",
+            "_target_": "verl_articulation.workers.config.ActorConfig",
             "strategy": "fsdp",
             "ppo_mini_batch_size": 256,
             "ppo_micro_batch_size_per_gpu": 256,
             "optim": {
-                "_target_": "verl.workers.config.OptimizerConfig",
+                "_target_": "verl_articulation.workers.config.OptimizerConfig",
                 "lr": 0.1,
             },
         }
@@ -115,12 +115,12 @@ class TestActorConfig(unittest.TestCase):
     def test_config_dict_like_access(self):
         """Test dictionary-like access to config fields."""
         config_dict = {
-            "_target_": "verl.workers.config.ActorConfig",
+            "_target_": "verl_articulation.workers.config.ActorConfig",
             "strategy": "fsdp",
             "ppo_mini_batch_size": 256,
             "ppo_micro_batch_size_per_gpu": 256,
             "optim": {
-                "_target_": "verl.workers.config.OptimizerConfig",
+                "_target_": "verl_articulation.workers.config.OptimizerConfig",
                 "lr": 0.1,
             },
         }
@@ -138,12 +138,12 @@ class TestActorConfig(unittest.TestCase):
     def test_frozen_fields_modification_raises_exception(self):
         """Test that modifying frozen fields raises an exception."""
         config_dict = {
-            "_target_": "verl.workers.config.ActorConfig",
+            "_target_": "verl_articulation.workers.config.ActorConfig",
             "strategy": "fsdp",
             "ppo_mini_batch_size": 256,
             "ppo_micro_batch_size_per_gpu": 256,
             "optim": {
-                "_target_": "verl.workers.config.OptimizerConfig",
+                "_target_": "verl_articulation.workers.config.OptimizerConfig",
                 "lr": 0.1,
             },
         }

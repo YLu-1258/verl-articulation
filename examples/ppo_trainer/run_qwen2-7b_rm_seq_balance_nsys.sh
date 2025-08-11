@@ -13,7 +13,7 @@ PROFILE_RANKS_ALL=False # or True
 PROFILE_RANKS=[0,4,8,12]
 DISCRETE=False  # or True
 
-python3 -m verl.trainer.main_ppo \
+python3 -m verl_articulation.trainer.main_ppo \
     algorithm.adv_estimator=gae \
     data.train_files="$train_files" \
     data.val_files="$test_files" \

@@ -18,9 +18,9 @@ import os
 
 import pytest
 
-from verl.utils.reward_score import default_compute_score, prime_code, sandbox_fusion
-from verl.utils.reward_score.prime_code import apps_check_correctness
-from verl.workers.reward_manager.prime import parallel_compute_score_async
+from verl_articulation.utils.reward_score import default_compute_score, prime_code, sandbox_fusion
+from verl_articulation.utils.reward_score.prime_code import apps_check_correctness
+from verl_articulation.workers.reward_manager.prime import parallel_compute_score_async
 
 prime_math_answers = [
     """\\begin{bmatrix}\n -7 & 6 & -8 \\\\\n 11 & -9 & 12 \\\\\n 15 & -16 & 19 \n \\end{bmatrix}""",

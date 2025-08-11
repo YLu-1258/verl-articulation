@@ -12,7 +12,7 @@ conda create -n verl python==3.10
 conda activate verl
 
 # Install verl
-git clone https://github.com/volcengine/verl.git
+git clone https://github.com/volcengine/verl_articulation.git
 cd verl
 pip3 install -e .
 
@@ -32,7 +32,7 @@ docker pull hiyouga/verl:ngc-th2.6.0-cu126-vllm0.8.3-flashinfer0.2.2-cxx11abi0
 
 ## Features
 
-vLLM 0.8+ supports cuda graph and V1 engine by default in verl. To enable these features, remember to add the following lines to the bash script:
+vLLM 0.8+ supports cuda graph and V1 engine by default in verl_articulation. To enable these features, remember to add the following lines to the bash script:
 
 ```bash
 actor_rollout_ref.rollout.enforce_eager=False \

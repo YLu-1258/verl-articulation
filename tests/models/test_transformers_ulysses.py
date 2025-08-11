@@ -22,17 +22,17 @@ from flash_attn.bert_padding import index_first_axis, rearrange, unpad_input
 from torch.distributed import init_device_mesh
 from transformers import AutoModelForCausalLM, LlamaConfig, PretrainedConfig, Qwen2Config
 
-from verl.models.transformers.monkey_patch import apply_monkey_patch
-from verl.protocol import DataProto
-from verl.utils.distributed import initialize_global_process_group
-from verl.utils.model import compute_position_id_with_mask, create_random_mask
-from verl.utils.ulysses import (
+from verl_articulation.models.transformers.monkey_patch import apply_monkey_patch
+from verl_articulation.protocol import DataProto
+from verl_articulation.utils.distributed import initialize_global_process_group
+from verl_articulation.utils.model import compute_position_id_with_mask, create_random_mask
+from verl_articulation.utils.ulysses import (
     gather_outputs_and_unpad,
     get_ulysses_sequence_parallel_world_size,
     set_ulysses_sequence_parallel_group,
     ulysses_pad_and_slice_inputs,
 )
-from verl.workers.sharding_manager.fsdp_ulysses import FSDPUlyssesShardingManager
+from verl_articulation.workers.sharding_manager.fsdp_ulysses import FSDPUlyssesShardingManager
 
 # TODO(sgm): add more models for test
 # we only need one scale for each model

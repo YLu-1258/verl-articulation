@@ -104,8 +104,8 @@ def check_verl():
         sys.path.insert(0, os.getcwd())
         import verl
 
-        print("Version      :", verl.__version__)
-        verl_dir = os.path.dirname(verl.__file__)
+        print("Version      :", verl_articulation.__version__)
+        verl_dir = os.path.dirname(verl_articulation.__file__)
         print("Directory    :", verl_dir)
         try:
             commit_hash = _get_current_git_commit()
@@ -118,7 +118,7 @@ def check_verl():
         import traceback
 
         if not isinstance(e, IOError):
-            print("An error occurred trying to import verl.")
+            print("An error occurred trying to import verl_articulation.")
             print("This is very likely due to missing or incompatible library files.")
         print(traceback.format_exc())
 

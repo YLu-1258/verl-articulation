@@ -8,7 +8,7 @@ Author: `Yusheng Su <https://yushengsu-thu.github.io/>`_
 Setup
 -----
 
-If you run on AMD GPUs (MI300) with ROCM platform, you cannot use the previous quickstart to run verl. You should follow the following steps to build a docker and set ``RAY_EXPERIMENTAL_NOSET_ROCR_VISIBLE_DEVICES`` or ``RAY_EXPERIMENTAL_NOSET_HIP_VISIBLE_DEVICES`` when starting ray in verl's RLHF training.
+If you run on AMD GPUs (MI300) with ROCM platform, you cannot use the previous quickstart to run verl_articulation. You should follow the following steps to build a docker and set ``RAY_EXPERIMENTAL_NOSET_ROCR_VISIBLE_DEVICES`` or ``RAY_EXPERIMENTAL_NOSET_HIP_VISIBLE_DEVICES`` when starting ray in verl's RLHF training.
 
 
 docker/Dockerfile.rocm
@@ -294,7 +294,7 @@ docker/Dockerfile.rocm
         pybind11
         
     WORKDIR /workspace/
-    RUN git clone https://github.com/volcengine/verl.git && \
+    RUN git clone https://github.com/volcengine/verl_articulation.git && \
         cd verl && \
         pip install -e . 
     ##########################################
@@ -385,7 +385,7 @@ PPO
     python3 -c "import transformers; transformers.pipeline('text-generation', model='$MODEL_PATH')"
     ENGINE=vllm #sglang
 
-    PYTHONUNBUFFERED=1 python3 -m verl.trainer.main_ppo \
+    PYTHONUNBUFFERED=1 python3 -m verl_articulation.trainer.main_ppo \
      data.train_files=data/gsm8k/train.parquet \
      data.val_files=data/gsm8k/test.parquet \
      data.train_batch_size=256 \
@@ -440,7 +440,7 @@ GRPO
     python3 -c "import transformers; transformers.pipeline('text-generation', model='$MODEL_PATH')"
     ENGINE=vllm #sglang
     
-    python3 -m verl.trainer.main_ppo \
+    python3 -m verl_articulation.trainer.main_ppo \
         algorithm.adv_estimator=grpo \
         data.train_files=data/gsm8k/train.parquet \
         data.val_files=data/gsm8k/test.parquet \
@@ -530,7 +530,7 @@ slurm_script.sh
 
     ### Project
     CONTAINER_NAME="multinode_verl_training"
-    IMG="verl.rocm"
+    IMG="verl_articulation.rocm"
     DOCKERFILE="docker/Dockerfile.rocm"
     # echo $PWD
     verl_workdir="${HOME}/projects/verl_upstream"
@@ -745,7 +745,7 @@ slurm_script.sh
 
     PYTHONUNBUFFERED=1 srun --overlap --nodes=${SLURM_NNODES} --ntasks=1 -w "$head_node" \
         docker exec "${CONTAINER_NAME}" \
-        python3 -m verl.trainer.main_ppo \
+        python3 -m verl_articulation.trainer.main_ppo \
         data.train_files=$train_files \
         data.val_files=$val_files \
         data.train_batch_size=1024 \

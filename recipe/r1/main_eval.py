@@ -25,8 +25,8 @@ import pandas as pd
 import ray
 from tqdm import tqdm
 
-from verl.trainer.ppo.reward import get_custom_reward_fn
-from verl.utils.fs import copy_to_local
+from verl_articulation.trainer.ppo.reward import get_custom_reward_fn
+from verl_articulation.utils.fs import copy_to_local
 
 
 @ray.remote

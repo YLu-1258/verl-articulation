@@ -30,17 +30,17 @@ from utils_sglang import (
     prepare_inputs,
 )
 
-from verl.protocol import DataProto
-from verl.tools.sandbox_fusion_tools import TokenBucketWorker
-from verl.tools.schemas import (
+from verl_articulation.protocol import DataProto
+from verl_articulation.tools.sandbox_fusion_tools import TokenBucketWorker
+from verl_articulation.tools.schemas import (
     OpenAIFunctionParametersSchema,
     OpenAIFunctionPropertySchema,
     OpenAIFunctionSchema,
     OpenAIFunctionToolSchema,
     ToolResponse,
 )
-from verl.workers.rollout.schemas import AsyncRolloutRequest, AsyncRolloutRequestStateEnum, Message
-from verl.workers.rollout.sglang_rollout.sglang_rollout import SGLangRollout
+from verl_articulation.workers.rollout.schemas import AsyncRolloutRequest, AsyncRolloutRequestStateEnum, Message
+from verl_articulation.workers.rollout.sglang_rollout.sglang_rollout import SGLangRollout
 
 sandbox_url = ""
 
@@ -247,7 +247,7 @@ class TestRolloutWithTools:
         """Test tool registration functionality"""
         assert len(mock_rollout._tool_schemas) == 1
         assert "code_interpreter" in mock_rollout._tool_map.keys()
-        from verl.tools.sandbox_fusion_tools import SandboxFusionTool
+        from verl_articulation.tools.sandbox_fusion_tools import SandboxFusionTool
 
         assert isinstance(mock_rollout._tool_map["code_interpreter"], SandboxFusionTool)
         assert mock_rollout._tool_call_parser_type == "qwen25"
@@ -559,7 +559,7 @@ class TestSingleNodeRateLimiterCase(RayMultiProcessTestCase):
 
     def test_rate_limiter(self):
         ray.init("auto", namespace="test", ignore_reinit_error=True)
-        from verl.tools.sandbox_fusion_tools import PoolMode, init_execution_pool
+        from verl_articulation.tools.sandbox_fusion_tools import PoolMode, init_execution_pool
 
         # exec_worker = ExecutionWorker.options(max_concurrency=10).remote(enable_global_rate_limit=True, rate_limit=3)
         exec_worker = init_execution_pool(
@@ -591,7 +591,7 @@ class TestSingleNodeRateLimiterCase(RayMultiProcessTestCase):
 
     def test_rotten_execution(self):
         ray.init("auto", namespace="test", ignore_reinit_error=True)
-        from verl.tools.sandbox_fusion_tools import PoolMode, init_execution_pool
+        from verl_articulation.tools.sandbox_fusion_tools import PoolMode, init_execution_pool
 
         # exec_worker = ExecutionWorker.options(max_concurrency=10).remote(enable_global_rate_limit=True, rate_limit=6)
         exec_worker = init_execution_pool(
@@ -623,7 +623,7 @@ class TestMultiNodeRateLimiterCase(RayMultiProcessTestCase):
 
     def test_rate_limiter(self):
         ray.init("auto", namespace="test", ignore_reinit_error=True)
-        from verl.tools.sandbox_fusion_tools import PoolMode, init_execution_pool
+        from verl_articulation.tools.sandbox_fusion_tools import PoolMode, init_execution_pool
 
         # exec_worker = ExecutionWorker.options(max_concurrency=10).remote(enable_global_rate_limit=True, rate_limit=6)
         exec_worker = init_execution_pool(

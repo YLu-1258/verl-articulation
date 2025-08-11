@@ -15,7 +15,7 @@ import os
 
 from omegaconf import OmegaConf
 
-from verl.workers.fsdp_workers import ActorRolloutRefWorker
+from verl_articulation.workers.fsdp_workers import ActorRolloutRefWorker
 
 
 def test_actor_rollout_ref_worker_actor_ref_model():
@@ -29,17 +29,17 @@ def test_actor_rollout_ref_worker_actor_ref_model():
     model:
       path: Qwen/Qwen2.5-0.5B-Instruct
     actor:
-      _target_: verl.workers.config.FSDPActorConfig
+      _target_: verl_articulation.workers.config.FSDPActorConfig
       strategy: fsdp
       fsdp_config:
-        _target_: verl.workers.config.FSDPEngineConfig
+        _target_: verl_articulation.workers.config.FSDPEngineConfig
         fsdp_size: -1
         forward_prefetch: false
     ref:
       model:
         path: Qwen/Qwen2.5-1.5B-Instruct
       fsdp_config:
-        _target_: verl.workers.config.FSDPEngineConfig
+        _target_: verl_articulation.workers.config.FSDPEngineConfig
         fsdp_size: -1
       log_prob_micro_batch_size: 1
       ulysses_sequence_parallel_size: 1

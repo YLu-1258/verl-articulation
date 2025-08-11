@@ -18,13 +18,13 @@ import os
 
 from torch.distributed.device_mesh import DeviceMesh
 
-from verl import DataProto
-from verl.protocol import all_gather_data_proto
-from verl.third_party.vllm import parallel_state as vllm_ps
-from verl.utils.debug import GPUMemoryLogger
-from verl.utils.device import get_torch_device
-from verl.utils.torch_functional import check_device_is_available
-from verl.workers.sharding_manager.base import BaseShardingManager
+from verl_articulation import DataProto
+from verl_articulation.protocol import all_gather_data_proto
+from verl_articulation.third_party.vllm import parallel_state as vllm_ps
+from verl_articulation.utils.debug import GPUMemoryLogger
+from verl_articulation.utils.device import get_torch_device
+from verl_articulation.utils.torch_functional import check_device_is_available
+from verl_articulation.workers.sharding_manager.base import BaseShardingManager
 
 logger = logging.getLogger(__file__)
 logger.setLevel(os.getenv("VERL_LOGGING_LEVEL", "WARN"))

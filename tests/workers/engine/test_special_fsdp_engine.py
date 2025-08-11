@@ -22,11 +22,11 @@ import torch.nn.functional as F
 from omegaconf import OmegaConf
 from tensordict import TensorDict
 
-from verl import DataProto
-from verl.trainer.config import CheckpointConfig
-from verl.workers.config import OptimizerConfig
-from verl.workers.config.engine import FSDPEngineConfig
-from verl.workers.engine.fsdp import FSDPEngine
+from verl_articulation import DataProto
+from verl_articulation.trainer.config import CheckpointConfig
+from verl_articulation.workers.config import OptimizerConfig
+from verl_articulation.workers.config.engine import FSDPEngineConfig
+from verl_articulation.workers.engine.fsdp import FSDPEngine
 
 
 class TestFSDPEngine(unittest.TestCase):

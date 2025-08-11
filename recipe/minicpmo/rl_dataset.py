@@ -29,9 +29,9 @@ from torch.utils.data import Dataset
 from torchvision import transforms
 from transformers import PreTrainedTokenizer, ProcessorMixin
 
-import verl.utils.torch_functional as verl_F
-from verl.utils.dataset.vision_utils import process_image
-from verl.utils.model import compute_position_id_with_mask
+import verl_articulation.utils.torch_functional as verl_F
+from verl_articulation.utils.dataset.vision_utils import process_image
+from verl_articulation.utils.model import compute_position_id_with_mask
 
 logger = logging.getLogger(__name__)
 
@@ -440,7 +440,7 @@ class RLHFDataset(Dataset):
         self._read_files_and_tokenize()
 
     def _download(self, use_origin_parquet=False):
-        from verl.utils.fs import copy_to_local
+        from verl_articulation.utils.fs import copy_to_local
 
         data_files = self.data_files if not use_origin_parquet else self.original_data_files
         for i, parquet_file in enumerate(data_files):

@@ -22,8 +22,8 @@ from omegaconf import DictConfig
 
 from recipe.langgraph_agent.react_agent_loop import ReactAgentLoop
 from tests.experimental.agent_loop.agent_utils import init_agent_loop_manager
-from verl.protocol import DataProto
-from verl.utils import hf_tokenizer
+from verl_articulation.protocol import DataProto
+from verl_articulation.utils import hf_tokenizer
 
 
 @pytest.fixture

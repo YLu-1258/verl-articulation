@@ -18,7 +18,7 @@ hf download \
     --local-dir $HOME/data/Maxwell-Jia/AIME_2024
 
 
-python3 -m verl.trainer.main_ppo \
+python3 -m verl_articulation.trainer.main_ppo \
     algorithm.adv_estimator=grpo \
     algorithm.use_kl_in_reward=False \
     algorithm.kl_ctrl.kl_coef=0.0 \

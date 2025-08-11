@@ -1,5 +1,5 @@
 tools:
-  - class_name: "verl.tools.geo3k_tool.Geo3kTool"
+  - class_name: "verl_articulation.tools.geo3k_tool.Geo3kTool"
     config: 
       type: native
     tool_schema:

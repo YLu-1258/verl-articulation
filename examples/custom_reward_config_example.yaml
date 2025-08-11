@@ -1,0 +1,52 @@
+# Example configuration for using custom reward function with sub-reward logging
+# This shows how to configure VERL to use your custom reward function
+
+# Add this to your training configuration:
+
+custom_reward_function:
+  path: "/path/to/your/custom_reward_function.py"  # Path to your reward function file
+  name: "custom_reward_with_subrewards"  # Function name in the file (optional if named 'compute_score')
+  reward_kwargs:
+    fluency_weight: 0.3
+    relevance_weight: 0.5
+    safety_weight: 0.2
+    min_length: 10
+    max_length: 200
+
+# Your custom reward function should follow VERL's API:
+# def my_reward_fn(data_source, solution_str, ground_truth, extra_info=None, **kwargs):
+#     # Your reward computation logic here
+#     fluency_score = compute_fluency(solution_str)
+#     relevance_score = compute_relevance(solution_str, ground_truth)
+#     safety_score = compute_safety(solution_str)
+#     
+#     final_score = combine_scores(fluency_score, relevance_score, safety_score)
+#     
+#     # Return dictionary for sub-reward logging:
+#     return {
+#         "score": final_score,  # Main reward used for training (required)
+#         "fluency": fluency_score,  # Sub-rewards that will be logged
+#         "relevance": relevance_score,
+#         "safety": safety_score,
+#     }
+#
+# OR return just a float for backward compatibility:
+#     return final_score
+
+# With the modifications, you'll now see these metrics logged:
+# - reward/fluency/mean, reward/fluency/max, reward/fluency/min, reward/fluency/std
+# - reward/relevance/mean, reward/relevance/max, reward/relevance/min, reward/relevance/std
+# - reward/safety/mean, reward/safety/max, reward/safety/min, reward/safety/std
+# - reward/score/mean, reward/score/max, reward/score/min, reward/score/std (the main reward)
+# ... and so on for all sub-rewards in your dictionary
+
+# During validation, the same metrics will be prefixed with "val-":
+# - val-reward/fluency/mean, val-reward/fluency/max, etc.
+
+# Note: The reward function API expects these specific parameter names:
+# - data_source: string identifying the dataset (e.g., "openai/gsm8k")
+# - solution_str: the model's generated response as a string
+# - ground_truth: the expected answer as a string  
+# - extra_info: optional dictionary with additional info (may include num_turns, etc.)
+# 
+# Any additional parameters should be passed via reward_kwargs in the config.

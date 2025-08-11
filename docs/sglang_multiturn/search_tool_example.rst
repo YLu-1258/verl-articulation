@@ -59,7 +59,7 @@ Install verl Upstream
 .. code:: bash
 
    cd ~
-   git clone https://github.com/volcengine/verl.git
+   git clone https://github.com/volcengine/verl_articulation.git
    cd verl
 
    # Install verl
@@ -223,7 +223,7 @@ You must specify ``retrieval_service_url`` in ``examples/sglang_multiturn/config
 .. code:: yaml
 
    tools:
-     - class_name: verl.tools.search_tool.SearchTool
+     - class_name: verl_articulation.tools.search_tool.SearchTool
        config:
          retrieval_service_url: http://127.0.0.1:8000/retrieve
          num_workers: 120

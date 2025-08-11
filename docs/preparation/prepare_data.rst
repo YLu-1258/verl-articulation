@@ -21,7 +21,7 @@ into two parts:
    import os
    import datasets
 
-   from verl.utils.hdfs_io import copy, makedirs
+   from verl_articulation.utils.hdfs_io import copy, makedirs
    import argparse
 
    # To extract the solution for each prompts in the dataset

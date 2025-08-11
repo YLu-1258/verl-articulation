@@ -19,7 +19,7 @@ import hydra
 import ray
 
 from recipe.spin.spin_trainer import RaySPINTrainer
-from verl.trainer.ppo.reward import get_custom_reward_fn
+from verl_articulation.trainer.ppo.reward import get_custom_reward_fn
 
 
 @hydra.main(config_path="config", config_name="spin_trainer", version_base=None)
@@ -51,7 +51,7 @@ class TaskRunner:
 
         from omegaconf import OmegaConf
 
-        from verl.utils.fs import copy_to_local
+        from verl_articulation.utils.fs import copy_to_local
 
         pprint(OmegaConf.to_container(config, resolve=True))  # resolve=True will eval symbol values
         OmegaConf.resolve(config)
@@ -60,7 +60,7 @@ class TaskRunner:
         local_path = copy_to_local(config.actor_rollout_ref.model.path)
 
         # instantiate tokenizer
-        from verl.utils import hf_processor, hf_tokenizer
+        from verl_articulation.utils import hf_processor, hf_tokenizer
 
         trust_remote_code = config.data.get("trust_remote_code", False)
         tokenizer = hf_tokenizer(local_path, trust_remote_code=trust_remote_code)
@@ -71,13 +71,13 @@ class TaskRunner:
             assert config.critic.strategy in {"fsdp", "fsdp2"}
             # from recipe.spin.fsdp_workers import ActorRolloutRefWorker
             from recipe.spin.fsdp_workers import SPINRolloutRefWorker
-            from verl.single_controller.ray import RayWorkerGroup
+            from verl_articulation.single_controller.ray import RayWorkerGroup
 
             ray_worker_group_cls = RayWorkerGroup
 
         elif config.actor_rollout_ref.actor.strategy == "megatron":
             assert config.actor_rollout_ref.actor.strategy == config.critic.strategy
-            from verl.single_controller.ray import RayWorkerGroup
+            from verl_articulation.single_controller.ray import RayWorkerGroup
 
             ray_worker_group_cls = RayWorkerGroup
 
@@ -105,7 +105,7 @@ class TaskRunner:
             if config.reward_model.strategy in {"fsdp", "fsdp2"}:
                 from recipe.spin.fsdp_workers import RewardModelWorker
             elif config.reward_model.strategy == "megatron":
-                from verl.workers.megatron_workers import RewardModelWorker
+                from verl_articulation.workers.megatron_workers import RewardModelWorker
             else:
                 raise NotImplementedError
             role_worker_mapping[Role.RewardModel] = ray.remote(RewardModelWorker)
@@ -117,10 +117,10 @@ class TaskRunner:
         role_worker_mapping[Role.RefPolicy] = ray.remote(SPINRolloutRefWorker)
         mapping[Role.RefPolicy] = global_pool_id
 
-        from verl.workers.reward_manager import get_reward_manager_cls
+        from verl_articulation.workers.reward_manager import get_reward_manager_cls
 
         # Note(haibin.lin): please make sure custom reward managers are imported and
-        # registered via `verl.workers.reward_manager.register`
+        # registered via `verl_articulation.workers.reward_manager.register`
         reward_manager_name = config.reward_model.get("reward_manager", "naive")
         reward_manager_cls = get_reward_manager_cls(reward_manager_name)
 

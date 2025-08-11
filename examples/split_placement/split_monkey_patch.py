@@ -22,8 +22,8 @@ from pprint import pprint
 import numpy as np
 import torch
 
-from verl import DataProto
-from verl.trainer.ppo.ray_trainer import (
+from verl_articulation import DataProto
+from verl_articulation.trainer.ppo.ray_trainer import (
     AdvantageEstimator,
     apply_kl_penalty,
     compute_advantage,
@@ -31,7 +31,7 @@ from verl.trainer.ppo.ray_trainer import (
     compute_timing_metrics,
     marked_timer,
 )
-from verl.utils.metric import reduce_metrics
+from verl_articulation.utils.metric import reduce_metrics
 
 
 def fit(self):
@@ -43,7 +43,7 @@ def fit(self):
     """
     from omegaconf import OmegaConf
 
-    from verl.utils.tracking import Tracking
+    from verl_articulation.utils.tracking import Tracking
 
     logger = Tracking(
         project_name=self.config.trainer.project_name,

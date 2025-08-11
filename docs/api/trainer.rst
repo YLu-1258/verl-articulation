@@ -8,24 +8,24 @@ Trainers drive the training loop. Introducing new trainer classes in case of new
 .. autosummary::
    :nosignatures:
 
-   verl.trainer.ppo.ray_trainer.RayPPOTrainer
+   verl_articulation.trainer.ppo.ray_trainer.RayPPOTrainer
 
 
 Core APIs
 ~~~~~~~~~~~~~~~~~
 
-.. autoclass:: verl.trainer.ppo.ray_trainer.RayPPOTrainer
+.. autoclass:: verl_articulation.trainer.ppo.ray_trainer.RayPPOTrainer
    :members: __init__, init_workers, fit
 
-.. automodule:: verl.utils.tokenizer
+.. automodule:: verl_articulation.utils.tokenizer
    :members: hf_tokenizer
 
-.. automodule:: verl.trainer.ppo.core_algos
+.. automodule:: verl_articulation.trainer.ppo.core_algos
    :members: agg_loss, kl_penalty, compute_policy_loss, kl_penalty
 
-.. automodule:: verl.trainer.ppo.reward
+.. automodule:: verl_articulation.trainer.ppo.reward
    :members: load_reward_manager, compute_reward, compute_reward_async
 
-.. autoclass:: verl.workers.reward_manager.NaiveRewardManager
+.. autoclass:: verl_articulation.workers.reward_manager.NaiveRewardManager
 
-.. autoclass:: verl.workers.reward_manager.DAPORewardManager
+.. autoclass:: verl_articulation.workers.reward_manager.DAPORewardManager

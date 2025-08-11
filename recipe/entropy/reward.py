@@ -17,8 +17,8 @@ from functools import partial
 
 import ray
 
-from verl import DataProto
-from verl.trainer.ppo.reward import compute_reward, get_custom_reward_fn
+from verl_articulation import DataProto
+from verl_articulation.trainer.ppo.reward import compute_reward, get_custom_reward_fn
 
 from .reward_score import _default_compute_score
 
@@ -36,7 +36,7 @@ def load_reward_manager(config, tokenizer, num_examine, **reward_kwargs):
     Returns:
         An instance of the specified reward manager class.
     """
-    from verl.workers.reward_manager import get_reward_manager_cls
+    from verl_articulation.workers.reward_manager import get_reward_manager_cls
 
     # The list of pre-defined reward managers are defined in `verl/workers/reward_manager/`:
     # naive: NaiveRewardManager
@@ -44,7 +44,7 @@ def load_reward_manager(config, tokenizer, num_examine, **reward_kwargs):
     # batch: BatchRewardManager
     # dapo: DAPORewardManager
     # Note(haibin.lin): For custom reward managers, please make sure they are imported and
-    # registered via `verl.workers.reward_manager.register`
+    # registered via `verl_articulation.workers.reward_manager.register`
     # By default reward_manager is set to naive (NaiveRewardManager)
     reward_manager_name = config.reward_model.get("reward_manager", "naive")
     reward_manager_cls = get_reward_manager_cls(reward_manager_name)

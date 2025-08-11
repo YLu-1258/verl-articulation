@@ -24,9 +24,9 @@ import ray
 import ray.util.collective as collective
 import torch
 
-from verl.single_controller.base import Worker
-from verl.single_controller.base.decorator import Dispatch, register
-from verl.single_controller.ray import RayClassWithInitArgs, RayResourcePool, RayWorkerGroup
+from verl_articulation.single_controller.base import Worker
+from verl_articulation.single_controller.base.decorator import Dispatch, register
+from verl_articulation.single_controller.ray import RayClassWithInitArgs, RayResourcePool, RayWorkerGroup
 
 
 @ray.remote

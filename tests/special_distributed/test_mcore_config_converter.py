@@ -19,8 +19,8 @@ import torch
 from megatron.core.transformer import MLATransformerConfig, TransformerConfig
 from transformers import AutoConfig, PretrainedConfig
 
-from verl.models.mcore import hf_to_mcore_config
-from verl.utils.distributed import destroy_global_process_group, initialize_global_process_group
+from verl_articulation.models.mcore import hf_to_mcore_config
+from verl_articulation.utils.distributed import destroy_global_process_group, initialize_global_process_group
 
 TEST_MODELS = [
     "Qwen/Qwen2.5-7B",  # Qwen2 dense

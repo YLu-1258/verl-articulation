@@ -1,6 +1,6 @@
 # Tests layout
 
-Each folder under tests/ corresponds to a test category for a sub-namespace in verl. For instance:
+Each folder under tests/ corresponds to a test category for a sub-namespace in verl_articulation. For instance:
 - `tests/trainer` for testing functionality related to `verl/trainer`
 - `tests/models` for testing functionality related to `verl/models`
 - ...

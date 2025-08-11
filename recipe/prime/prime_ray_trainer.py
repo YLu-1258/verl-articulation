@@ -26,15 +26,15 @@ import numpy as np
 import torch
 from omegaconf import OmegaConf, open_dict
 
-from verl import DataProto
-from verl.single_controller.ray import RayWorkerGroup
-from verl.trainer.ppo.core_algos import agg_loss
-from verl.trainer.ppo.metric_utils import _compute_response_info
-from verl.trainer.ppo.ray_trainer import RayPPOTrainer, ResourcePoolManager, Role, WorkerType
-from verl.utils.checkpoint.checkpoint_manager import find_latest_ckpt_path
-from verl.utils.dataset.rl_dataset import RLHFDataset, collate_fn
-from verl.utils.metric import reduce_metrics
-from verl.utils.profiler.performance import simple_timer
+from verl_articulation import DataProto
+from verl_articulation.single_controller.ray import RayWorkerGroup
+from verl_articulation.trainer.ppo.core_algos import agg_loss
+from verl_articulation.trainer.ppo.metric_utils import _compute_response_info
+from verl_articulation.trainer.ppo.ray_trainer import RayPPOTrainer, ResourcePoolManager, Role, WorkerType
+from verl_articulation.utils.checkpoint.checkpoint_manager import find_latest_ckpt_path
+from verl_articulation.utils.dataset.rl_dataset import RLHFDataset, collate_fn
+from verl_articulation.utils.metric import reduce_metrics
+from verl_articulation.utils.profiler.performance import simple_timer
 
 from . import prime_core_algos
 
@@ -340,7 +340,7 @@ class RayPRIMETrainer(RayPPOTrainer):
         """
         from omegaconf import OmegaConf
 
-        from verl.utils.tracking import Tracking
+        from verl_articulation.utils.tracking import Tracking
 
         logger = Tracking(
             project_name=self.config.trainer.project_name,

@@ -17,11 +17,11 @@ from typing import Any
 
 import datasets
 
-from verl.tools.base_tool import OpenAIFunctionToolSchema
-from verl.tools.sandbox_fusion_tools import SandboxFusionTool
-from verl.utils.dataset import RLHFDataset
-from verl.utils.reward_score import math_dapo
-from verl.utils.rollout_trace import rollout_trace_op
+from verl_articulation.tools.base_tool import OpenAIFunctionToolSchema
+from verl_articulation.tools.sandbox_fusion_tools import SandboxFusionTool
+from verl_articulation.utils.dataset import RLHFDataset
+from verl_articulation.utils.reward_score import math_dapo
+from verl_articulation.utils.rollout_trace import rollout_trace_op
 
 logger = logging.getLogger(__name__)
 

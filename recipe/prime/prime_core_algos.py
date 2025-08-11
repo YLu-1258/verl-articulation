@@ -15,10 +15,10 @@
 import torch
 
 import verl
-import verl.utils.torch_functional as verl_F
+import verl_articulation.utils.torch_functional as verl_F
 
 
-def compute_rloo_advantage_return(data: verl.DataProto, response_mask: torch.Tensor, n_samples, config):
+def compute_rloo_advantage_return(data: verl_articulation.DataProto, response_mask: torch.Tensor, n_samples, config):
     # calculate rloo reward on different reward sources, and sum again
     def masked_rloo(reward_tensor_original, mask_tensor):
         reward_tensor = reward_tensor_original.clone()
